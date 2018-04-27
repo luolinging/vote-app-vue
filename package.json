@@ -61,5 +61,11 @@
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
-  ]
+  ],
+  "main": ".postcssrc.js",
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/luoll/vote-app-vue.git"
+  },
+  "license": "ISC"
 }
