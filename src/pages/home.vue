@@ -26,7 +26,6 @@
 			<label class="person">
 				访问次数：<span class="fw_time" v-model="fw_time">{{}}</span>
 			</label>
-
 		</div>
 		<!--活动规则-->
 		<div class="activity">
@@ -39,38 +38,28 @@
 		</div>
 		<!--图片懒加载-->
 		<div class="lazy">
-			<!--<div class="lazylist" v-for="showimg in showimgs">
+			<div class="lazylist" v-for="showimg in showimgs">
 				<img class="lazyimg" v-lazy="showimg.url" />
-			</div>-->
+			</div>
 
 		</div>
 		<div class="footer">
 			<!--底部选项卡-->
-			<mt-tab-container v-model="selected">
-				<mt-tab-container-item id="home"></mt-tab-container-item>
-				<mt-tab-container-item id="search">搜索</mt-tab-container-item>
-				<mt-tab-container-item id="my">我的</mt-tab-container-item>
-			</mt-tab-container>
-			<div class="bottom-bar">
-				<mt-tabbar v-model="selected">
-					<mt-tab-item id="home">
-						<router-link to="">
-							首页
-						</router-link>
-					</mt-tab-item>
-					<mt-tab-item id="search">
-						<router-link to="/search">
-							搜索
-						</router-link>
-					</mt-tab-item>
-					<mt-tab-item id="my">
-						<router-link to="/my">
-							我的
-						</router-link>
-					</mt-tab-item>
-				</mt-tabbar>
-			</div>
-		</div>
+      <mt-tab-container v-model="selected">
+        <mt-tab-container-item id="home">
+        </mt-tab-container-item>
+        <mt-tab-container-item id="search">
+        </mt-tab-container-item>
+        <mt-tab-container-item id="my">
+        </mt-tab-container-item>
+      </mt-tab-container>
+
+      <mt-tabbar v-model="selected" fixed>
+        <mt-tab-item id="home"><router-link to="/">首页</router-link></mt-tab-item>
+        <mt-tab-item id="search"><router-link to="/search">搜索</router-link></mt-tab-item>
+        <mt-tab-item id="my"><router-link to="/my">我的</router-link></mt-tab-item>
+      </mt-tabbar>
+    </div>
 	</div>
 </template>
 
@@ -106,7 +95,7 @@
 				startDate: new Date('2018-3-9'),
 				endDate: new Date(),
 				/*底部标题参数*/
-				selected: '',
+				selected: "home",
 				showimgs: [{
 					url: 'http://localhost:8081/static/hongtao/少女的梦境---观赏与聆听.jpg'
 				}, {
@@ -127,11 +116,11 @@
 	}
 </script>
 
-<style scoped>	
+<style scoped>
 	.img_header {
 		width: 100%;
 	}
-	
+
 	.mint-swipe {
 		height: 250px;
 	}
@@ -148,14 +137,21 @@
 		position: absolute;
 		bottom: 0;
 	}
-	/*.lazy{
-		height: 900px;
-	}*/
 	.lazy .lazyimg {
-		width: 345px;
-		
+		width: 100%
+
 	}
 	.mint-tabbar{
 		background-color: #26a2ff;
 	}
+
+	.lazyimg[lazy=loading] {
+	  width: 40px;
+	  height: 200px;
+	  margin: auto;
+	}
+  	.footer{
+    	position: absolute; /*相对于父元素contanier定位*/
+    	bottom: 0;/*始终距离它的父元素的底部为0px.则是处于父元素的最底*/
+  	}
 </style>
