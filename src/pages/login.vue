@@ -10,7 +10,7 @@
 		<div class="mint-content">
 			<mt-field label="用户名:" placeholder="请输入用户名" v-model="username"></mt-field>
 			<hr />
-			<mt-field label="密码:" placeholder="请输入密码" type="password" v-model="password"></mt-field>
+			<mt-field label="密码:" placeholder="请输入密码" type="password" v-model="pwd"></mt-field>
 			<hr />
 			<div class="mui-content-padded">
 				<button class="mui-btn-primary">登录</button>
@@ -31,7 +31,8 @@
 		//设置数据对象
 		data() {
 			return {
-
+				username: "",
+				pwd: ""
 			}
 		},
 		//数组或对象，用于接收来自父组件的数据
@@ -59,22 +60,87 @@
 </script>
 
 <style scoped>
-	.mui-input-group {
+	/*@import '../../static/css/mui.min.css';
+	@import '../../static/css/style.css';*/
+	.mint-content {
 		margin-top: 3.5rem;
 	}
-	.mint-content{
-		margin-top:3rem;
-		margin-left:1rem;
-		margin-right:1rem;
-		border: solid 1px gainsboro;
-		padding-top: 0.3rem;
-		padding-bottom: 0.3rem;
+	/*登录样式设置   mui组件源代码*/
+	
+	.area {
+		margin: 20px auto 0px auto;
 	}
-	hr{
-		border: solid 1px gainsboro;
-		width:95%;
+	
+	.mui-input-group {
+		margin-top: 10px;
 	}
-	.mui-content-padded{
-		
+	
+	.mui-input-group:first-child {
+		margin-top: 20px;
+	}
+	
+	.mui-input-group label {
+		width: 22%;
+	}
+	
+	.mui-input-row label~input,
+	.mui-input-row label~select,
+	.mui-input-row label~textarea {
+		width: 78%;
+	}
+	
+	.mui-checkbox input[type=checkbox],
+	.mui-radio input[type=radio] {
+		top: 6px;
+	}
+	
+	.mui-content-padded {
+		margin-top: 25px;
+	}
+	
+	.mui-btn {
+		padding: 10px;
+	}
+	
+	.link-area {
+		display: block;
+		margin-top: 25px;
+		text-align: center;
+	}
+	
+	.spliter {
+		color: #bbb;
+		padding: 0px 8px;
+	}
+	
+	.oauth-area {
+		position: absolute;
+		bottom: 20px;
+		left: 0px;
+		text-align: center;
+		width: 100%;
+		padding: 0px;
+		margin: 0px;
+	}
+	
+	.oauth-area .oauth-btn {
+		display: inline-block;
+		width: 50px;
+		height: 50px;
+		background-size: 30px 30px;
+		background-position: center center;
+		background-repeat: no-repeat;
+		margin: 0px 20px;
+		/*-webkit-filter: grayscale(100%); */
+		border: solid 1px #ddd;
+		border-radius: 25px;
+	}
+	
+	.oauth-area .oauth-btn:active {
+		border: solid 1px #aaa;
+	}
+	
+	.oauth-area .oauth-btn.disabled {
+		background-color: #ddd;
 	}
 </style>

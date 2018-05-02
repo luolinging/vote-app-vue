@@ -13,11 +13,9 @@
 			<mt-field label="密码:" placeholder="请输入密码" type="password" v-model="password"></mt-field>
 			<hr />
 			<div class="mui-content-padded">
-				<button class="mui-btn-primary">登录</button>
+				<button class="mui-btn-primary">注册</button>
 				<div class="link-area">
-					<router-link to="/register">注册</router-link>
-					<span class="spliter">|</span>
-					<a id='forgetPassword'>忘记密码</a>
+					<router-link to="/login">已有账号</router-link>
 				</div>
 			</div>
 		</div>
