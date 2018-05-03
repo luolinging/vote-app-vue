@@ -47,7 +47,8 @@ export default {
 </script>
 
 <style scoped>
-.mint-search{
-	margin-top:25px;
+
+.mint-searchbar{
+	margin-top: 0.7rem;
 }
 </style>

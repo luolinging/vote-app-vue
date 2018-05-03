@@ -177,6 +177,7 @@ export default {
   }
   textarea{
     margin-top: 0.5rem;
+    margin-left: 0.1rem;
   }
   .btntj{
     margin-top: 0.5rem;

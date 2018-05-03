@@ -108,7 +108,7 @@
 		name: 'home',
 		data() {
 			return {
-				/*顶层标题参数*/
+				/*图片轮播*/
 				items: [{
 					title: 'Blahblah-臧鹏',
 					url: 'http://localhost:8081/static/img/img1.png'
@@ -119,10 +119,6 @@
 					title: '午后-孙晓东',
 					url: 'http://localhost:8081/static/img/img3.png'
 				}],
-				/*图片轮播*/
-				cs_person: '',
-				lj_vote: '',
-				fw_time: '',
 				/*投票时间参数设置*/
 				startTime: '2018-03-09',
 				endTime: '2018-07-01',
