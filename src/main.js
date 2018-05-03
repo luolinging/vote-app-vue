@@ -20,7 +20,9 @@ import vueResource from 'vue-resource'
 import { DatetimePicker } from 'mint-ui';
 import VueLazyLoad from 'vue-lazyload';
 import { Button ,Search ,Field ,Lazyload} from 'mint-ui';
+import { Cell } from 'mint-ui';
 
+Vue.component(Cell.name, Cell);
 Vue.use(Lazyload);
 Vue.component(Field.name, Field);
 Vue.component(Search.name, Search);

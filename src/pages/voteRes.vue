@@ -1,5 +1,17 @@
 <template>
   <div>
+    <div class="vote-record">
+      <div class="header">
+        <mt-header fixed title="投票结果">
+          <router-link to="/playerDetail" slot="left">
+            <mt-button icon="back"></mt-button>
+          </router-link>
+          <router-link to="/resChart" slot="right">
+            <mt-button >图像分析</mt-button>
+          </router-link>
+        </mt-header>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -9,9 +21,9 @@ export default {
   //设置数据对象
   data () {
     return {
-      
+
     }
-  }, 
+  },
   //数组或对象，用于接收来自父组件的数据
   props: [],//数组
   props: {},//对象
@@ -30,7 +42,7 @@ export default {
   //自定义局部指令
   directives:{},
   //过滤器
-  filters:{}  
+  filters:{}
 }
 </script>
 
