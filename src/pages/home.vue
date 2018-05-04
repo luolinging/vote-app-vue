@@ -17,7 +17,12 @@
 		</div>
 		<!--参赛人数-->
 		<div class="game_num">
-			<label class="person">
+      <mt-navbar>
+        <mt-tab-item id="1">参赛人数：300{{cs_person}}</mt-tab-item>
+        <mt-tab-item id="2">累积投票：200{{lj_vote}}</mt-tab-item>
+        <mt-tab-item id="3">访问次数：800{{fw_time}}</mt-tab-item>
+      </mt-navbar>
+			<!--<label class="person">
 				参赛人数：<span class="cs_person" v-model="cs_person">{{cs_person}}</span>
 			</label>
 			<label class="person">
@@ -25,44 +30,46 @@
 			</label>
 			<label class="person">
 				访问次数：<span class="fw_time" v-model="fw_time">{{fw_time}}</span>
-			</label>
+			</label>-->
 		</div>
 		<!--活动规则-->
 		<div class="activity">
 			<div>活动规则：每个账号只能投票一次</div>
 			<div class="start_time">
 				<span>开始时间：</span>
-				<input 
-					id='start' 
-					type="text" 
-					class='form-control input-sm' 
-					name='start' 
-					@click='openPicker("start")' 
+				<input
+					id='start'
+					type="text"
+					class='form-control input-sm'
+					name='start'
+					@click='openPicker("start")'
 					v-model='startTime'>
 			</div>
 			<div class="end_time">
 				<span>结束时间：</span>
-				<input 
-					id='end' 
-					type="text" 
-					class='form-control input-sm' 
-					name='end' 
-					@click='openPicker("end")' 
+				<input
+					id='end'
+					type="text"
+					class='form-control input-sm'
+					name='end'
+					@click='openPicker("end")'
 					v-model='endTime'>
 			</div>
-			<mt-datetime-picker 
-				type="date" 
-				ref="picker" 
-				year-format="{value} 年" 
-				month-format="{value} 月" 
-				date-format="{value} 日" 
+			<mt-datetime-picker
+				type="date"
+				ref="picker"
+				year-format="{value} 年"
+				month-format="{value} 月"
+				date-format="{value} 日"
 				@confirm="handleConfirm">
 			</mt-datetime-picker>
 		</div>
 		<!--图片懒加载-->
 		<div class="lazy">
 			<div class="lazylist" v-for="playerImg in playerImgHome">
-				<img class="lazyimg" v-lazy="playerImg.url" />
+        <router-link to="/playerDetail">
+				  <img class="lazyimg" v-lazy="playerImg.url" />
+        </router-link>
 				<div class="content">
 					<!--选手编号-->
 					<span>1{{playerNum}}号</span>
@@ -180,45 +187,40 @@
 </script>
 
 <style scoped>
-	.img_header {
-		width: 100%;
-	}
-	
-	.mint-swipe {
-		height: 250px;
-	}
-	/*图片轮播样式*/	
-	.desc {
-		font-weight: 400;
-		opacity: .9;
-		padding: 5px;
-		height: 10px;
-		line-height: 10px;
-		width: 100%;
-		color: # ##909090;
-		background-color: #E0E0E0;
-		position: absolute;
-		bottom: 0;
-	}
-	
+  /*轮播图设置*/
+  img {
+    width: 100%;
+  }
+  .mint-swipe {
+    height: 200px;
+  }
+  .desc {
+    font-weight: 600;
+    opacity: .9;
+    padding: 5px;
+    height: 20px;
+    line-height: 20px;
+    width: 100%;
+    color: #fff;
+    background-color: gray;
+    position: absolute;
+    bottom: 0;
+  }
 	.game_num {
-		padding-left: 2px;
-		padding-right: 2px;
-		padding-top: 5px;
-		background-color: #F0F0F0;
+    padding: 0.1rem 0.05rem;
+    background-color: #F0F0F0;
 	}
-	
 	.activity {
 		padding: 2px;
 		background-color: #F0F0F0;
 	}
-	
+
 	.activity .starttime {
 		padding-right: 2px;
 		padding-top: 2px;
 		padding-bottom: 5px;
 	}
-	
+
 	@component datetime {
 		@descendent wrapper {
 			padding: 0 20px;
@@ -230,26 +232,25 @@
 			}
 		}
 	}
-	
 	.lazy .lazyimg {
 		width: 100%
 	}
-	
+
 	.mint-tabbar {
 		background-color: #26a2ff;
 	}
-	
+
 	.lazyimg[lazy=loading] {
 		width: 40px;
 		height: 200px;
 		margin: auto;
 	}
-	
+
 	.lazylist .content {
 		line-height: 35px;
     	padding-bottom: 15px;
 	}
-	
+
 	.footer {
 		position: absolute;
 		/*相对于父元素contanier定位*/

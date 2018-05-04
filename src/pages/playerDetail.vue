@@ -12,44 +12,40 @@
 		</div>
 		<!--图片轮播-->
 		<div class="slide_show">
-			<mt-swipe :auto="3000">
-				<mt-swipe-item v-for="item in items" :key="item.id">
-					<a :href="item.href">
-						<img :src="item.url" class="img_header"/>
-						<span class="desc">{{item.title}}</span>
-					</a>
-				</mt-swipe-item>
-			</mt-swipe>
+      <mt-swipe :auto="3000">
+        <mt-swipe-item v-for="item in items" :key="item.id">
+          <a :href="item.href">
+            <img :src="item.url" class="img"/>
+            <span class="desc">{{item.title}}</span>
+          </a>
+        </mt-swipe-item>
+      </mt-swipe>
 		</div>
 		<!--选手详情-->
-		<div class="game_num">
-			<label class="person">
-				作品名：<span class="zpname" v-model="zpname">{{zpname}}</span>
-			</label>
-			<label class="person">
-				编号：<span class="zpname" v-model="zpname">{{authornum}}</span>
-			</label>
-			<label class="person">
-				票数：<span class="zpname" v-model="zpname">{{votenum}}</span>
-			</label>
+		<div class="palyer">
+      <mt-navbar >
+        <mt-tab-item id="1">作品名：叶子{{zpname}}</mt-tab-item>
+        <mt-tab-item id="2">编号：001{{authornum}}</mt-tab-item>
+        <mt-tab-item id="3">票数：16{{votenum}}</mt-tab-item>
+      </mt-navbar>
 		</div>
 		<div>
 			<mt-button size="large" type="primary">投Ta一票</mt-button>
 		</div>
 		<div>
-			<span>作家简介：</span>
-			<textarea cols="46" rows="8"></textarea>
+      <mt-cell title="作家简介："></mt-cell>
+      <mt-field class="zzdetail" type="textarea" rows="10" v-model="zzdetail"></mt-field>
 		</div>
 		<div>
-			<span>作品简介：</span>
-			<textarea cols="46" rows="8"></textarea>
+      <mt-cell title="作品简介："></mt-cell>
+      <mt-field class="zpdetail" type="textarea" rows="10" v-model="zpdetail" @></mt-field>
 		</div>
 	</div>
 </template>
 
 <script>
-	import { Swipe, SwipeItem } from 'mint-ui';
-	import 'mint-ui/lib/style.css';
+  import {Swipe, SwipeItem} from 'mint-ui';
+  import 'mint-ui/lib/style.css';
 	export default {
 		name: 'playerDetail',
 		//设置数据对象
@@ -104,24 +100,30 @@
 </script>
 
 <style scoped>
-/*.slide_show{
-	margin-top: 0.5rem;
-}*/
-
-.mint-swipe {
-		height: 250px;
-	}
-	/*图片轮播样式*/	
-	.desc {
-		font-weight: 400;
-		opacity: .9;
-		padding: 5px;
-		height: 10px;
-		line-height: 10px;
-		width: 100%;
-		color: # ##909090;
-		background-color: #E0E0E0;
-		position: absolute;
-		bottom: 0;
-	}
+  /*轮播图设置*/
+  img {
+    width: 100%;
+  }
+  .mint-swipe {
+    height: 200px;
+  }
+  .desc {
+    font-weight: 600;
+    opacity: .9;
+    padding: 5px;
+    height: 20px;
+    line-height: 20px;
+    width: 100%;
+    color: #fff;
+    background-color: gray;
+    position: absolute;
+    bottom: 0;
+  }
+  .palyer{
+    padding: 0.2rem 0.1rem;
+    background-color: #F0F0F0;
+  }
+  .zzdetail,.zpdetail{
+    border: solid 1px #acacb4;
+  }
 </style>
