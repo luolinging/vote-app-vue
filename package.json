@@ -10,6 +10,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "chart.js": "^2.7.2",
     "lib-flexible": "^0.3.2",
     "mint-ui": "^2.2.13",
     "moment": "^2.22.1",
