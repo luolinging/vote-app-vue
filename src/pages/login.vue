@@ -25,7 +25,7 @@
 </template>
 
 <script>
-	import register from '../pages/register.vue'
+	
 	export default {
 		name: 'login',
 		//设置数据对象
@@ -60,8 +60,8 @@
 </script>
 
 <style scoped>
-	/*@import '../../static/css/mui.min.css';
-	@import '../../static/css/style.css';*/
+	@import url("http://localhost:8081/static/css/mui.min.css");
+	@import url("http://localhost:8081/static/css/style.css");
 	.mint-content {
 		margin-top: 3.5rem;
 	}

@@ -17,59 +17,32 @@
 		</div>
 		<!--参赛人数-->
 		<div class="game_num">
-      <mt-navbar>
-        <mt-tab-item id="1">参赛人数：300{{cs_person}}</mt-tab-item>
-        <mt-tab-item id="2">累积投票：200{{lj_vote}}</mt-tab-item>
-        <mt-tab-item id="3">访问次数：800{{fw_time}}</mt-tab-item>
-      </mt-navbar>
-			<!--<label class="person">
-				参赛人数：<span class="cs_person" v-model="cs_person">{{cs_person}}</span>
-			</label>
-			<label class="person">
-				累积投票：<span class="lj_vote" v-model="lj_vote">{{lj_vote}}</span>
-			</label>
-			<label class="person">
-				访问次数：<span class="fw_time" v-model="fw_time">{{fw_time}}</span>
-			</label>-->
+			<mt-navbar>
+				<mt-tab-item id="1">参赛人数：300{{cs_person}}</mt-tab-item>
+				<mt-tab-item id="2">累积投票：200{{lj_vote}}</mt-tab-item>
+				<mt-tab-item id="3">访问次数：800{{fw_time}}</mt-tab-item>
+			</mt-navbar>
 		</div>
 		<!--活动规则-->
 		<div class="activity">
-			<div>活动规则：每个账号只能投票一次</div>
+			<div class="role">活动规则：每个账号只能投票一次</div>
 			<div class="start_time">
 				<span>开始时间：</span>
-				<input
-					id='start'
-					type="text"
-					class='form-control input-sm'
-					name='start'
-					@click='openPicker("start")'
-					v-model='startTime'>
+				<input id='start' type="text" class='form-control input-sm' name='start' @click='openPicker("start")' v-model='startTime'>
 			</div>
 			<div class="end_time">
 				<span>结束时间：</span>
-				<input
-					id='end'
-					type="text"
-					class='form-control input-sm'
-					name='end'
-					@click='openPicker("end")'
-					v-model='endTime'>
+				<input id='end' type="text" class='form-control input-sm' name='end' @click='openPicker("end")' v-model='endTime'>
 			</div>
-			<mt-datetime-picker
-				type="date"
-				ref="picker"
-				year-format="{value} 年"
-				month-format="{value} 月"
-				date-format="{value} 日"
-				@confirm="handleConfirm">
+			<mt-datetime-picker type="date" ref="picker" year-format="{value} 年" month-format="{value} 月" date-format="{value} 日" @confirm="handleConfirm">
 			</mt-datetime-picker>
 		</div>
 		<!--图片懒加载-->
 		<div class="lazy">
 			<div class="lazylist" v-for="playerImg in playerImgHome">
-        <router-link to="/playerDetail">
-				  <img class="lazyimg" v-lazy="playerImg.url" />
-        </router-link>
+				<router-link to="/playerDetail">
+					<img class="lazyimg" v-lazy="playerImg.url" />
+				</router-link>
 				<div class="content">
 					<!--选手编号-->
 					<span>1{{playerNum}}号</span>
@@ -79,8 +52,8 @@
 				</div>
 			</div>
 		</div>
+		<!--底部选项卡-->
 		<div class="footer">
-			<!--底部选项卡-->
 			<mt-tab-container v-model="selected">
 				<mt-tab-container-item id="home">
 				</mt-tab-container-item>
@@ -108,8 +81,6 @@
 	import { Swipe, SwipeItem } from 'mint-ui';
 	import 'mint-ui/lib/style.css';
 	import { Toast } from 'mint-ui';
-	import search from '../pages/search.vue';
-	import my from '../pages/my.vue';
 	import moment from 'moment';
 	export default {
 		name: 'home',
@@ -180,47 +151,60 @@
 			},
 			/*投票按钮点击事件*/
 			handleClick() {
-
+				alert("投票成功");
 			}
 		}
 	}
 </script>
 
 <style scoped>
-  /*轮播图设置*/
-  img {
-    width: 100%;
-  }
-  .mint-swipe {
-    height: 200px;
-  }
-  .desc {
-    font-weight: 600;
-    opacity: .9;
-    padding: 5px;
-    height: 20px;
-    line-height: 20px;
-    width: 100%;
-    color: #fff;
-    background-color: gray;
-    position: absolute;
-    bottom: 0;
-  }
-	.game_num {
-    padding: 0.1rem 0.05rem;
-    background-color: #F0F0F0;
+	.header {
+		margin-bottom: 0.54rem;
 	}
-	.activity {
-		padding: 2px;
+	.mint-header.is-fixed{
+		position: absolute;
+	}	
+	/*轮播图设置*/
+	
+	img {
+		width: 100%;
+	}
+	
+	.mint-swipe {
+		height: 200px;
+	}
+	
+	.desc {
+		font-weight: 600;
+		opacity: .9;
+		padding: 5px;
+		height: 20px;
+		line-height: 20px;
+		width: 100%;
+		color: #fff;
+		background-color: gray;
+		position: absolute;
+		bottom: 0;
+	}
+	
+	.game_num {
+		padding: 0.1rem 0.05rem;
 		background-color: #F0F0F0;
 	}
-
+	
+	.activity {
+		padding: 0.2rem;
+		margin-bottom: 0.1rem;
+		margin-top: 0.1rem;
+		background-color: #F0F0F0;
+	}
+	
 	.activity .starttime {
 		padding-right: 2px;
 		padding-top: 2px;
 		padding-bottom: 5px;
 	}
-
+	
 	@component datetime {
 		@descendent wrapper {
 			padding: 0 20px;
@@ -232,25 +216,33 @@
 			}
 		}
 	}
+	
 	.lazy .lazyimg {
 		width: 100%
 	}
-
+	
 	.mint-tabbar {
 		background-color: #26a2ff;
 	}
-
+	
 	.lazyimg[lazy=loading] {
 		width: 40px;
 		height: 200px;
 		margin: auto;
 	}
-
+	
 	.lazylist .content {
-		line-height: 35px;
-    	padding-bottom: 15px;
+		padding-top: 5px;
+		padding-bottom: 15px;
+		text-align: center;
 	}
-
+	
+	.mint-button--normal,
+	.mint-button--small {
+		margin-left: 1rem;
+		margin-right: 1rem;
+	}
+	
 	.footer {
 		position: absolute;
 		/*相对于父元素contanier定位*/

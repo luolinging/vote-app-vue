@@ -1,48 +1,132 @@
 <template>
-  <div class="res-chart">
-    <div class="vote-record">
-      <div class="header">
-        <mt-header fixed title="图像分析">
-          <router-link to="/voteRes" slot="left">
-            <mt-button icon="back"></mt-button>
-          </router-link>
-        </mt-header>
-      </div>
-    </div>
-  </div>
+	<div class="res-chart">
+		<div class="vote-record">
+			<div class="header">
+				<mt-header fixed title="图像分析">
+					<router-link to="/voteRes" slot="left">
+						<mt-button icon="back"></mt-button>
+					</router-link>
+				</mt-header>
+			</div>
+		</div>
+		<div class="charts" id="myChart" :style="{width: '345px', height: '500px'}">
+		</div>
+	</div>
 </template>
 
 <script>
-export default {
-  name: 'HelloWorld',
-  //设置数据对象
-  data () {
-    return {
-
-    }
-  },
-  //数组或对象，用于接收来自父组件的数据
-  props: [],//数组
-  props: {},//对象
-  //计算属性
-  computed: {},
-  //局部注册组件
-  components:{},
-  //事件处理器
-  methods:{},
-  //一个对象，键是需要观察的表达式，值是对应回调函数
-  watch:{},
-  //生命钩子函数:实例创建完成之后被调用
-  created(){},
-  //生命钩子函数:el被新创建的vm.$el替换，挂载到实例上
-  mounted:{},
-  //自定义局部指令
-  directives:{},
-  //过滤器
-  filters:{}
-}
+	let echarts = require('echarts/lib/echarts')
+	// 引入柱状图组件
+	require('echarts/lib/chart/pie')
+	// 引入提示框和title组件
+	require('echarts/lib/component/tooltip')
+	require('echarts/lib/component/title')
+	export default {
+		name: 'resChart',
+		//设置数据对象
+		data() {
+			return {
+			}
+		},
+		mounted() {
+			this.drawLine();
+		},
+		methods: {
+			drawLine() {
+				// 基于准备好的dom，初始化echarts实例
+				let myChart = echarts.init(document.getElementById('myChart'))
+				// 绘制图表
+				myChart.setOption({
+					title: {
+						text: '投票结果',
+						subtext: '饼状图',
+						x: 'center'
+					},
+					tooltip: {
+						trigger: 'item',
+						formatter: "{a}<br/>{b}:{c}({d}%)"
+					},
+					/*左上角类似导航栏显示每一个选项*/
+					/*legend: {
+						orient: 'vertical',
+						left: 'left',
+						data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎']
+					},*/
+					series: [{
+						name: '票数',
+						type: 'pie',
+						radius: '50%',
+						center: ['45%', '45%'],
+						data: [{							
+								value: 335,
+								name: '灵峰白梅'
+							},
+							{
+								value: 310,
+								name: '梦的远方'
+							},
+							{
+								value: 102,
+								name: '感知非现实'
+							},
+							{
+								value: 300,
+								name: '蜷缩的人'
+							},
+							{
+								value: 49,
+								name: '红扇舞'
+							},
+							{
+								value: 12,
+								name: '忘情'
+							},
+							{
+								value: 20,
+								name: '鸭子'
+							},
+							{
+								value: 42,
+								name: '忆江南'
+							},
+							{
+								value: 53,
+								name: '春·日·光'
+							},
+							{
+								value: 20,
+								name: '思空'
+							},
+							{
+								value: 132,
+								name: '远方'
+							},
+							{
+								value: 423,
+								name: '门口'
+							},
+							{
+								value: 600,
+								name: '夜·烧烤'
+							}
+						],
+						itemStyle: {
+							emphasis: {
+								shadowBlur: 10,
+								shadowOffsetX: 0,
+								shadowColor: 'rgba(0, 0, 0, 0.5)'
+							}
+						}
+					}]
+				});
+			}
+		}
+	}
 </script>
 
 <style scoped>
+	.header {
+		margin-bottom: 1rem;
+	}
 
 </style>

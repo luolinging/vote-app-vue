@@ -2,8 +2,11 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import 'lib-flexible'
+import axios from 'axios'
 
 Vue.config.productionTip = false
+//给vue原型挂载一个属性
+Vue.prototype.$ajax = axios
 
 // 4.0 mint-ui的使用
 // 4.0.1 导入mint-ui的样式
@@ -21,6 +24,7 @@ import { DatetimePicker } from 'mint-ui';
 import VueLazyLoad from 'vue-lazyload';
 import { Button ,Search ,Field ,Lazyload} from 'mint-ui';
 import { Cell } from 'mint-ui';
+
 
 Vue.component(Cell.name, Cell);
 Vue.use(Lazyload);

@@ -23,10 +23,9 @@
                :multiple="multiple"
                @change="change"/>
       </div>
-      <div class="authorjj">
-        <span>作家简介：</span>
-        <textarea rows="9" cols="42">
-        </textarea>
+      <div>
+        <mt-cell title="作家简介："></mt-cell>
+				<mt-field class="authorjj" type="textarea" rows="10" v-model="zpdetail"></mt-field>
       </div>
       <div class="btntj">
         <mt-button size="large" type="primary" @click.native="handleClick">提交</mt-button>
@@ -181,5 +180,9 @@ export default {
   }
   .btntj{
     margin-top: 0.5rem;
+  }
+  .authorjj{
+  	margin-top: 0.2rem;
+  	border: solid 1px #acacb4;
   }
 </style>

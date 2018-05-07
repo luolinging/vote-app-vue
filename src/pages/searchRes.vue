@@ -8,7 +8,7 @@
 			</mt-header>
   	</div>
   	<!--搜索并返回结果，返回结果未实现-->
-  	<div class="search-box">
+  	<div class="search box">
   		<mt-search v-model="value" :result.sync="result" autofocus show></mt-search>	
   	</div>
   	
@@ -50,9 +50,5 @@ export default {
 .back {
 		margin-bottom: 0.8rem;
 }
-.mint-header.is-fixed{
-	position: absolute;
-}
-
 
 </style>

@@ -10,10 +10,10 @@
 		<div class="mint-content">
 			<mt-field label="邮箱" placeholder="请输入邮箱" type="email" v-model="email"></mt-field>
 			<hr />
-			<mt-field label="密码:" placeholder="请输入密码" type="password" v-model="password"></mt-field>
+			<mt-field label="密码:" placeholder="请输入密码" type="password" v-model="pwd"></mt-field>
 			<hr />
 			<div class="mui-content-padded">
-				<button class="mui-btn-primary">注册</button>
+				<button class="mui-btn-primary" @click="register">注册</button>
 				<div class="link-area">
 					<router-link to="/login">已有账号</router-link>
 				</div>
@@ -23,12 +23,15 @@
 </template>
 
 <script>
+import qs from "qs"
+import axios from 'axios';
 export default {
   name: 'register',
   //设置数据对象
   data () {
     return {
-      
+      email:'',
+      pwd:''
     }
   }, 
   //数组或对象，用于接收来自父组件的数据
@@ -39,7 +42,30 @@ export default {
   //局部注册组件
   components:{},
   //事件处理器
-  methods:{},
+  methods:{
+			register() {
+				debugger;
+				/*this.$ajax.post("http://192.168.1.100:8080/user/insert", JSON.stringify({
+					userCode: "luoling_luo@163.com",
+					password: "123456"
+				})).then(res => {
+					this.email=res.data;
+					this.pwd=res.data
+				})*/
+				axios.post('http://localhost:80/user/insert',
+            qs.stringify({
+							userCode: "luoling_luo@163.com",
+							password: "123456"
+						})
+	      ).then(function (response) {
+	        if(response.data.success){
+	          //that.back();
+	        }
+	      }).catch(function (error) {
+	
+	      })
+			},
+  },
   //一个对象，键是需要观察的表达式，值是对应回调函数
   watch:{},
   //生命钩子函数:实例创建完成之后被调用
