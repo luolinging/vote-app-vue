@@ -1,6 +1,6 @@
 <template>
-  <div class="register">
-  	<div class="header">
+	<div class="register">
+		<div class="header">
 			<mt-header fixed title="注册">
 				<router-link to="/login" slot="left">
 					<mt-button icon="back"></mt-button>
@@ -9,9 +9,14 @@
 		</div>
 		<div class="mint-content">
 			<mt-field label="邮箱" placeholder="请输入邮箱" type="email" v-model="email"></mt-field>
-			<hr />
+
 			<mt-field label="密码:" placeholder="请输入密码" type="password" v-model="pwd"></mt-field>
-			<hr />
+
+			<mt-field label="密码:" placeholder="请再次输入密码" type="password" v-model="respwd"></mt-field>
+
+			<mt-button class="btn" type="primary" @click.native="getCode">获取注册码</mt-button>
+			<mt-field class="mui-code" placeholder="请输入验证" type="text" v-model="code"></mt-field>
+
 			<div class="mui-content-padded">
 				<button class="mui-btn-primary" @click="register">注册</button>
 				<div class="link-area">
@@ -19,89 +24,73 @@
 				</div>
 			</div>
 		</div>
-  </div>
+	</div>
 </template>
 
 <script>
-import qs from "qs"
-import axios from 'axios';
-export default {
-  name: 'register',
-  //设置数据对象
-  data () {
-    return {
-      email:'',
-      pwd:''
-    }
-  }, 
-  //数组或对象，用于接收来自父组件的数据
-  props: [],//数组
-  props: {},//对象
-  //计算属性
-  computed: {},
-  //局部注册组件
-  components:{},
-  //事件处理器
-  methods:{
+	import qs from "qs"
+	import axios from 'axios';
+	export default {
+		name: 'register',
+		//设置数据对象
+		data() {
+			return {
+				email: '',
+				pwd: '',
+				respwd: '',
+				code: ''
+			}
+		},
+		//数组或对象，用于接收来自父组件的数据
+		props: [], //数组
+		props: {}, //对象
+		//计算属性
+		computed: {},
+		//局部注册组件
+		components: {},
+		//事件处理器
+		methods: {
+			/*注册事件*/
 			register() {
 				debugger;
-				/*this.$ajax.post("http://192.168.1.100:8080/user/insert", JSON.stringify({
-					userCode: "luoling_luo@163.com",
-					password: "123456"
-				})).then(res => {
-					this.email=res.data;
-					this.pwd=res.data
-				})*/
 				axios.post('http://localhost:80/user/insert',
-            qs.stringify({
-							userCode: "luoling_luo@163.com",
-							password: "123456"
-						})
-	      ).then(function (response) {
-	        if(response.data.success){
-	          //that.back();
-	        }
-	      }).catch(function (error) {
-	
-	      })
+					qs.stringify({
+						userCode: "luoling_luo@163.com",
+						password: "123456"
+					})
+				).then(function(response) {
+					if(response.data.success) {
+						//that.back();
+					}
+				}).catch(function(error) {
+
+				})
 			},
-  },
-  //一个对象，键是需要观察的表达式，值是对应回调函数
-  watch:{},
-  //生命钩子函数:实例创建完成之后被调用
-  created(){},
-  //生命钩子函数:el被新创建的vm.$el替换，挂载到实例上
-  mounted:{},
-  //自定义局部指令
-  directives:{},
-  //过滤器
-  filters:{}  
-}
+			/*获取验证玛*/
+			getCode(){
+				
+			}
+		},
+		//一个对象，键是需要观察的表达式，值是对应回调函数
+		watch: {},
+		//生命钩子函数:实例创建完成之后被调用
+		created() {},
+		//生命钩子函数:el被新创建的vm.$el替换，挂载到实例上
+		mounted: {},
+		//自定义局部指令
+		directives: {},
+		//过滤器
+		filters: {}
+	}
 </script>
 
 <style scoped>
-.mui-input-group {
-		margin-top: 3.5rem;
+	@import url("http://localhost:8081/static/css/mui.min.css");
+	@import url("http://localhost:8081/static/css/style.css");
+	.mint-content {
+		margin-top: 2.5rem;
 	}
-	.mint-content{
-		margin-top:3rem;
-		margin-left:1rem;
-		margin-right:1rem;
-		border: solid 1px gainsboro;
-		padding-top: 0.3rem;
-		padding-bottom: 0.3rem;
-	}
-	hr{
-		border: solid 1px gainsboro;
-		width:95%;
-	}
-	.mui-content-padded{
-		
-	}
-	
-	
 	/*登录样式设置   mui组件源代码*/
-	
 	.area {
 		margin: 20px auto 0px auto;
 	}
@@ -117,6 +106,16 @@ export default {
 	.mui-input-group label {
 		width: 22%;
 	}
+	.btn{
+		float: right;
+    height: 49px;
+	}
+	.mui-btn-primary{
+		width:101%;
+	}
+	.mui-code{
+		padding-left: 49px;
+	}
 	
 	.mui-input-row label~input,
 	.mui-input-row label~select,
@@ -131,6 +130,13 @@ export default {
 	
 	.mui-content-padded {
 		margin-top: 25px;
+		margin-left: auto;
+		margin-right: auto;
+		width: 28%;
+	}
+	
+	.mint-cell-wrapper {
+		background-color: red;
 	}
 	
 	.mui-btn {
@@ -166,7 +172,6 @@ export default {
 		background-position: center center;
 		background-repeat: no-repeat;
 		margin: 0px 20px;
-		/*-webkit-filter: grayscale(100%); */
 		border: solid 1px #ddd;
 		border-radius: 25px;
 	}

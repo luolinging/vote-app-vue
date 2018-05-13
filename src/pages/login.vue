@@ -9,9 +9,7 @@
 		</div>
 		<div class="mint-content">
 			<mt-field label="用户名:" placeholder="请输入用户名" v-model="username"></mt-field>
-			<hr />
 			<mt-field label="密码:" placeholder="请输入密码" type="password" v-model="pwd"></mt-field>
-			<hr />
 			<div class="mui-content-padded">
 				<button class="mui-btn-primary">登录</button>
 				<div class="link-area">
@@ -63,7 +61,7 @@
 	@import url("http://localhost:8081/static/css/mui.min.css");
 	@import url("http://localhost:8081/static/css/style.css");
 	.mint-content {
-		margin-top: 3.5rem;
+		margin-top: 2.5rem;
 	}
 	/*登录样式设置   mui组件源代码*/
 	
@@ -96,10 +94,19 @@
 	
 	.mui-content-padded {
 		margin-top: 25px;
+		margin-left: auto;
+	    margin-right: auto;
+	    width: 28%;
+	}
+	.mint-cell-wrapper{
+		margin-top: 0.2rem;
 	}
 	
 	.mui-btn {
 		padding: 10px;
+	}
+	.mui-btn-primary{
+		width:101%;
 	}
 	
 	.link-area {

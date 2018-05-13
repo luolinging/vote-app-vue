@@ -10,9 +10,7 @@
     <div class="main">
       <div class="detail">
         <mt-field label="姓名:" placeholder="请输入姓名" v-model="username"></mt-field>
-        <hr />
         <mt-field label="邮箱:" placeholder="请输入邮箱"  v-model="email"></mt-field>
-        <hr />
       </div>
       <div class="uploadworks">
         <span>上传作品：</span>
@@ -162,6 +160,8 @@ export default {
 </script>
 
 <style scoped>
+	@import url("http://localhost:8081/static/css/mui.min.css");
+	@import url("http://localhost:8081/static/css/style.css");
   .apply_jion{
     margin-top: 1.5rem;
   }

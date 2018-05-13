@@ -108,23 +108,23 @@
 				selected: "home",
 				/*选手作品相关*/
 				playerImgHome: [{
-					url: '../../static/img/hongtao/观赏与聆听.jpg'
+					url: '../../static/img/hongtao/1.jpg'
 				}, {
-					url: '../../static/img/kanghaoxian/进行之轴.png'
+					url: '../../static/img/kanghaoxian/2.png'
 				}, {
-					url: '../../static/img/niulongkai/树林中的礼貌.jpg'
+					url: '../../static/img/niulongkai/3.jpg'
 				}, {
-					url: '../../static/img/sunxiaodong/湖畔.jpg'
+					url: '../../static/img/sunxiaodong/4.jpg'
 				}, {
-					url: '../../static/img/sunying/某一天II.jpg'
+					url: '../../static/img/sunying/5.jpg'
 				}, {
-					url: '../../static/img/wenya/舞梦敦煌.jpg'
+					url: '../../static/img/wenya/6.jpg'
 				}, {
-					url: '../../static/img/zangpeng/门口.jpg'
+					url: '../../static/img/zangpeng/7.jpg'
 				}, {
-					url: '../../static/img/zhangziye/风撕碎了我们的笑颜.jpg'
+					url: '../../static/img/zhangziye/8.jpg'
 				}, {
-					url: '../../static/img/gupanpan/山杏报春四.jpg'
+					url: '../../static/img/gupanpan/9.jpg'
 				}],
 				playerNum: "", //选手编号
 				playerPnum: "" //选手票数

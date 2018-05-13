@@ -54,19 +54,19 @@
 				/*图片轮播*/
 				items: [{
 					title: '空想系列--穿越静谧之地',
-					url: '../../static/img/hongtao/穿越静谧之地.jpg'
+					url: '../../static/img/hongtao/1.jpg'
 				}, {
 					title: '与你随行--北方风景系列',
-					url: '../../static/img/hongtao/与你随行.jpg'
+					url: '../../static/img/hongtao/2.jpg'
 				}, {
 					title: '寂静的绿',
-					url: '../../static/img/hongtao/寂静的绿.jpg'
+					url: '../../static/img/hongtao/3jpg'
 				}, {
 					title: '空想系列--沉默的守护者',
-					url: '../../static/img/hongtao/沉默的守护者.jpg'
+					url: '../../static/img/hongtao/4.jpg'
 				}, {
 					title: '少女的梦境--梦在远方',
-					url: '../../static/img/hongtao/梦在远方.jpg'
+					url: '../../static/img/hongtao/5.jpg'
 				}],
 				/*选手详情*/
 				zpname: "",
