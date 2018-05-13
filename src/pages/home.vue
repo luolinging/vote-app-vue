@@ -89,13 +89,13 @@
 				/*图片轮播*/
 				items: [{
 					title: 'Blahblah-臧鹏',
-					url: 'http://localhost:8081/static/img/img1.png'
+					url: '../../static/img/img1.png'
 				}, {
 					title: '云梦遥-文雅',
-					url: 'http://localhost:8081/static/img/img2.png'
+					url: '../../static/img/img2.png'
 				}, {
 					title: '午后-孙晓东',
-					url: 'http://localhost:8081/static/img/img3.png'
+					url: '../../static/img/img3.png'
 				}],
 				/*投票时间参数设置*/
 				startTime: '2018-03-09',
@@ -108,23 +108,23 @@
 				selected: "home",
 				/*选手作品相关*/
 				playerImgHome: [{
-					url: 'http://localhost:8081/static/img/hongtao/少女的梦境---观赏与聆听.jpg'
+					url: '../../static/img/hongtao/观赏与聆听.jpg'
 				}, {
-					url: 'http://localhost:8081/static/img/kanghaoxian/进行之轴.png'
+					url: '../../static/img/kanghaoxian/进行之轴.png'
 				}, {
-					url: 'http://localhost:8081/static/img/niulongkai/树林中的礼貌.jpg'
+					url: '../../static/img/niulongkai/树林中的礼貌.jpg'
 				}, {
-					url: 'http://localhost:8081/static/img/sunxiaodong/湖畔.jpg'
+					url: '../../static/img/sunxiaodong/湖畔.jpg'
 				}, {
-					url: 'http://localhost:8081/static/img/sunying/某一天II.jpg'
+					url: '../../static/img/sunying/某一天II.jpg'
 				}, {
-					url: 'http://localhost:8081/static/img/wenya/舞梦敦煌.jpg'
+					url: '../../static/img/wenya/舞梦敦煌.jpg'
 				}, {
-					url: 'http://localhost:8081/static/img/zangpeng/门口.jpg'
+					url: '../../static/img/zangpeng/门口.jpg'
 				}, {
-					url: 'http://localhost:8081/static/img/zhangziye/风撕碎了我们的笑颜·9.jpg'
+					url: '../../static/img/zhangziye/风撕碎了我们的笑颜.jpg'
 				}, {
-					url: 'http://localhost:8081/static/img/gupanpan/山杏报春四.jpg'
+					url: '../../static/img/gupanpan/山杏报春四.jpg'
 				}],
 				playerNum: "", //选手编号
 				playerPnum: "" //选手票数
