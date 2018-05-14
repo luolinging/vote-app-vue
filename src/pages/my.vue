@@ -1,12 +1,14 @@
 <template>
   <div class="my">
-  	<div class="back">
-  		<router-link to="/" slot="left">
-    		<mt-button icon="back">返回</mt-button>
-  		</router-link>
-  	</div>
+  	<div class="header">
+			<mt-header fixed title="">
+				<router-link to="/" slot="left">
+					<mt-button icon="back"></mt-button>
+				</router-link>
+			</mt-header>
+		</div>
   	<div class="zh">
-  		账号名
+  		账号名:luoling
   		{{account}}
   	</div>
   	<div class="zx">
@@ -74,7 +76,7 @@ export default {
 <style scoped>
 	.zh{
 		margin-top: 1.5rem;
-		margin-bottom: 1.5rem;
+		margin-bottom: 0.5rem;
 		margin-left: 0.4rem;
 	}
 

@@ -14,8 +14,8 @@
 
 			<mt-field label="密码:" placeholder="请再次输入密码" type="password" v-model="respwd"></mt-field>
 
-			<mt-button class="btn" type="primary" @click.native="getCode">获取注册码</mt-button>
-			<mt-field class="mui-code" placeholder="请输入验证" type="text" v-model="code"></mt-field>
+			<mt-button class="btn" type="primary" @click.native="d">获取注册码</mt-button>
+			<mt-field class="mui-code" placeholder="请输入验证" type="text" v-model="verificationCode"></mt-field>
 
 			<div class="mui-content-padded">
 				<button class="mui-btn-primary" @click="register">注册</button>
@@ -38,7 +38,7 @@
 				email: '',
 				pwd: '',
 				respwd: '',
-				code: ''
+				verificationCode: ''
 			}
 		},
 		//数组或对象，用于接收来自父组件的数据
@@ -55,12 +55,13 @@
 				debugger;
 				axios.post('http://localhost:80/user/insert',
 					qs.stringify({
-						userCode: "luoling_luo@163.com",
-						password: "123456"
+						userCode: this.email,
+						password: this.pwd
 					})
 				).then(function(response) {
+					debugger;
 					if(response.data.success) {
-						//that.back();
+						
 					}
 				}).catch(function(error) {
 
@@ -68,7 +69,19 @@
 			},
 			/*获取验证玛*/
 			getCode(){
-				
+				debugger;
+				axios.post('http://localhost:80/user/sendVerificationCode',
+					qs.stringify({
+						userCode: this.email
+					})
+				).then(function(response) {
+					debugger;
+					if(response.data.success) {
+						
+					}
+				}).catch(function(error) {
+
+				})
 			}
 		},
 		//一个对象，键是需要观察的表达式，值是对应回调函数

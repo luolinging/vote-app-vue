@@ -23,7 +23,7 @@
       </div>
       <div>
         <mt-cell title="作家简介："></mt-cell>
-				<mt-field class="authorjj" type="textarea" rows="10" v-model="zpdetail"></mt-field>
+				<mt-field class="authorjj" type="textarea" rows="5" v-model="zpdetail"></mt-field>
       </div>
       <div class="btntj">
         <mt-button size="large" type="primary" @click.native="handleClick">提交</mt-button>
