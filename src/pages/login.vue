@@ -49,7 +49,8 @@
 					if(response.data.success){
 						console.log(response.data.successMessage);
 						/*登录成功后，直接跳转到home界面*/
-						/*debugger;*/
+						/*debugger;*/						
+						alert(response.data.successMessage)
 						_this.$router.push("/home");
 					}else{
 						alert("登录失败");

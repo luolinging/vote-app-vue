@@ -49,8 +49,14 @@
 			var _this = this;
 			axios.post('http://localhost:80/user/selectByPrimaryKey')
 			.then(function(response) {
-				debugger;				
-				_this.allDetail = response.data.map.value			
+				debugger;		
+				if(response.data.success){
+					_this.allDetail = response.data.map.value
+				}else{
+					alert(response.data.errorMessage);
+					_this.$router.push("/login");
+				}
+							
 			}).catch(function(error) {
 				console.log(error)
 			})
