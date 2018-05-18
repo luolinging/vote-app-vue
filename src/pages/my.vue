@@ -64,7 +64,11 @@
 			logoutClick() {
 				debugger;
 				var _this = this;
-				axios.post('http://localhost:80/user/Cancellation',
+				if(_this.allDetail==null){
+					alert("您还没有登录，请先登录！");
+					_this.$router.push("/login")
+				}else{
+					axios.post('http://localhost:80/user/Cancellation',
 					qs.stringify({
 						userCode: _this.allDetail.userCode
 					})
@@ -73,10 +77,15 @@
 					if(response.data.success) {
 						console.log(response.data.successMessage);
 						_this.$router.push("/login");
+					}else{
+						alert("您还没有登录，请先登录！");
+						_this.$router.push("/login")
 					}
 				}).catch(function(error) {
 					console.log(error);
 				})
+				}
+				
 			}
 		}
 	}
