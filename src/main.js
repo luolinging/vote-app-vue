@@ -3,11 +3,17 @@ import App from './App'
 import router from './router'
 import 'lib-flexible'
 import axios from 'axios'
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+Vue.use(ElementUI);
 
-Vue.config.productionTip = false
+axios.defaults.withCredentials=true;
+Vue.config.productionTip = false;
 //给vue原型挂载一个属性
 Vue.prototype.$ajax = axios
 
+import echarts from 'echarts'
+Vue.use(echarts);
 // 4.0 mint-ui的使用
 // 4.0.1 导入mint-ui的样式
 import 'mint-ui/lib/style.min.css'

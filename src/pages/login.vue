@@ -8,10 +8,10 @@
 			</mt-header>
 		</div>
 		<div class="mint-content">
-			<mt-field label="用户名:" placeholder="请输入用户名" v-model="username"></mt-field>
+			<mt-field label="用户名:" placeholder="请输入邮箱" v-model="username"></mt-field>
 			<mt-field label="密码:" placeholder="请输入密码" type="password" v-model="pwd"></mt-field>
 			<div class="mui-content-padded">
-				<button class="mui-btn-primary">登录</button>
+				<button class="mui-btn-primary" @click="login">登录</button>
 				<div class="link-area">
 					<router-link to="/register">注册</router-link>
 					<span class="spliter">|</span>
@@ -23,7 +23,8 @@
 </template>
 
 <script>
-	
+	import qs from "qs"
+	import axios from 'axios';
 	export default {
 		name: 'login',
 		//设置数据对象
@@ -33,33 +34,43 @@
 				pwd: ""
 			}
 		},
-		//数组或对象，用于接收来自父组件的数据
-		props: [], //数组
-		props: {}, //对象
-		//计算属性
-		computed: {},
-		//局部注册组件
-		components: {},
 		//事件处理器
-		methods: {},
-		//一个对象，键是需要观察的表达式，值是对应回调函数
-		watch: {},
-		//生命钩子函数:实例创建完成之后被调用
-		created() {
+		methods: {
+			login(){
+				/*debugger;*/
+				var _this = this;
+				axios.post('http://localhost:80/user/login',
+					qs.stringify({
+						userCode: this.username,
+						password: this.pwd,
+					})
+				).then(function(response){
+					/*debugger;*/
+					if(response.data.success){
+						console.log(response.data.successMessage);
+						/*登录成功后，直接跳转到home界面*/
+						/*debugger;*/
+						_this.$router.push("/home");
+					}else{
+						alert("登录失败");
+					}
+				})
+				.catch(function(error){
+					console.log(error);
+				});
+				
 
-		},
-		//生命钩子函数:el被新创建的vm.$el替换，挂载到实例上
-		mounted: {},
-		//自定义局部指令
-		directives: {},
-		//过滤器
-		filters: {}
+			}
+		}
 	}
 </script>
 
 <style scoped>
 	@import url("http://localhost:8081/static/css/mui.min.css");
 	@import url("http://localhost:8081/static/css/style.css");
+	.mint-header.is-fixed{
+		height:0.8rem;
+	}	
 	.mint-content {
 		margin-top: 2.5rem;
 	}

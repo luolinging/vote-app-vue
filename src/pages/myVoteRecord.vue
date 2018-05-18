@@ -8,24 +8,30 @@
 			</mt-header>
 		</div>
 		<!--循环输出结果-->
-		<div>
-			<mt-navbar v-for="item in items" :key="item.id">
-				<mt-tab-item id="0" class="tab0">{{item.num}}.</mt-tab-item>
-				<mt-tab-item id="1" class="tab1">作家名：{{item.authorname}}</mt-tab-item>
-				<mt-tab-item id="2" class="tab2">作品名：{{item.zpname}}</mt-tab-item>
-			</mt-navbar>
+		<div v-for="item in items">
+				<ul>
+					<ol >
+					<!--<mt-tab-item id="0" class="tab0">{{item.id}}.</mt-tab-item>-->
+					<span>{{item.id}}</span>&nbsp;&nbsp;
+					<span>作家名：{{item.username}}</span>
+					<span>作品名：{{item.voteItemName}}</span>
+					<span>票数：{{item.voteCount}}</span>
+					</ol>
+				</ul>
 		</div>
 
 	</div>
 </template>
 
 <script>
+	import qs from "qs";
+import axios from 'axios';
 	export default {
 		name: 'myVoteRecord',
 		//设置数据对象
 		data() {
 			return {
-				items: [{
+				items: [/*{
 					num: 1,
 					authorname: "顾盼盼",
 					zpname: "池边迎春"
@@ -61,33 +67,35 @@
 					num: 9,
 					authorname: "张子叶",
 					zpname: "无状态.51"
-				}]
+				}*/]
 
 			}
 		},
-		//数组或对象，用于接收来自父组件的数据
-		props: [], //数组
-		props: {}, //对象
-		//计算属性
-		computed: {},
-		//局部注册组件
-		components: {},
-		//事件处理器
-		methods: {},
-		//一个对象，键是需要观察的表达式，值是对应回调函数
-		watch: {},
-		//生命钩子函数:实例创建完成之后被调用
-		created() {},
-		//生命钩子函数:el被新创建的vm.$el替换，挂载到实例上
-		mounted: {},
-		//自定义局部指令
-		directives: {},
-		//过滤器
-		filters: {}
+		created() {
+			debugger;
+			var _this = this;
+			axios.post('http://localhost:80/voteCount/getMyVote'
+				).then(function(response) {
+					debugger;
+					if(response.data.success) {
+						console.log("success");
+					_this.items = response.data.map.value
+						
+					}else{						
+						console.log("error");
+					}
+				}).catch(function(error) {
+					console.log(error);
+					
+			})
+		}
 	}
 </script>
 
 <style scoped>
+	.mint-header.is-fixed{
+		height:0.8rem;
+	}	
 	.header {
 		margin-bottom: 1rem;
 	}
@@ -96,7 +104,7 @@
 		margin: 0.3rem 0.3rem;
 	}
 	
-	.tab0 {
+	/*.tab0 {
 		display: inline-block;
 		text-align: left;
 		margin-right: -75px;
@@ -112,5 +120,5 @@
 		text-align: left;
 		margin-left: 20px;
 		margin-right: -15px;
-	}
+	}*/
 </style>

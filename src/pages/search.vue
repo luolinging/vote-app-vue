@@ -2,7 +2,7 @@
   <div class="search">
 		<div class="back">
   		<mt-header fixed title="搜索">
-			  <router-link to="/" slot="left">
+			  <router-link to="/home" slot="left">
 			    <mt-button icon="back"></mt-button>
 			  </router-link>
 			</mt-header>
@@ -21,7 +21,8 @@ export default {
   //设置数据对象
   data () {
     return {
-      
+    	value:"",
+      result:null
     }
   }, 
   //数组或对象，用于接收来自父组件的数据
@@ -48,10 +49,11 @@ export default {
 
 <style scoped>
 .back {
-		margin-bottom: 0.8rem;
+		margin-bottom: 1rem;
 }
 .mint-header.is-fixed{
 	position: absolute;
+	height: 0.8rem;
 }
 
 

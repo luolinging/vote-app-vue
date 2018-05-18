@@ -1,44 +1,35 @@
-<template>
+<template id="detail">
 	<div class="player-detail">
 		<div class="header">
 			<mt-header fixed title="作品详情">
 				<router-link to="/" slot="left">
 					<mt-button icon="back"></mt-button>
 				</router-link>
-				<router-link to="/voteRes" slot="right">
-					<mt-button>投票结果</mt-button>
+				<router-link :to="'/voteRes/'+details.id" slot="right">
+					<mt-button >投票结果</mt-button>
 				</router-link>
 			</mt-header>
 		</div>
 		<!--图片轮播-->
 		<div class="slide_show">
-			<mt-swipe :auto="3000">
-				<mt-swipe-item v-for="item in items" :key="item.id">
-					<a :href="item.href">
-						<img :src="item.url" class="img" />
-						<span class="desc">{{item.title}}</span>
-					</a>
-				</mt-swipe-item>
-			</mt-swipe>
+			<img src="../../dist/static/img/gupanpan/1.jpg"/>
 		</div>
 		<!--选手详情-->
 		<div class="palyer">
 			<mt-navbar>
-				<mt-tab-item id="1">作品名：叶子{{zpname}}</mt-tab-item>
-				<mt-tab-item id="2">编号：001{{authornum}}</mt-tab-item>
-				<mt-tab-item id="3">票数：16{{votenum}}</mt-tab-item>
+				<mt-tab-item id="1">作品名：{{details.voteItemName}}</mt-tab-item>
+				<mt-tab-item id="2">编号：{{details.userId}}</mt-tab-item>
+				<mt-tab-item id="3">票数：{{details.voteCount}}</mt-tab-item>
 			</mt-navbar>
 		</div>
 		<div>
-			<mt-button size="large" type="primary">投Ta一票</mt-button>
-		</div>
-		<div>
-			<mt-cell title="作家简介："></mt-cell>
-			<mt-field class="zzdetail" type="textarea" rows="10" v-model="zzdetail"></mt-field>
+			<mt-button size="large" type="primary" @click.native="handleClick(details.id)">投Ta一票</mt-button>
 		</div>
 		<div>
 			<mt-cell title="作品简介："></mt-cell>
-			<mt-field class="zpdetail" type="textarea" rows="10" v-model="zpdetail"></mt-field>
+			<div>
+				{{details.voteItemDecrib}}
+			</div>
 		</div>
 	</div>
 </template>
@@ -46,60 +37,66 @@
 <script>
 	import { Swipe, SwipeItem } from 'mint-ui';
 	import 'mint-ui/lib/style.css';
+	import qs from "qs";
+	import axios from 'axios';
 	export default {
 		name: 'playerDetail',
 		//设置数据对象
 		data() {
-			return {
-				/*图片轮播*/
-				items: [{
-					title: '空想系列--穿越静谧之地',
-					url: '../../static/img/hongtao/1.jpg'
-				}, {
-					title: '与你随行--北方风景系列',
-					url: '../../static/img/hongtao/2.jpg'
-				}, {
-					title: '寂静的绿',
-					url: '../../static/img/hongtao/3jpg'
-				}, {
-					title: '空想系列--沉默的守护者',
-					url: '../../static/img/hongtao/4.jpg'
-				}, {
-					title: '少女的梦境--梦在远方',
-					url: '../../static/img/hongtao/5.jpg'
-				}],
-				/*选手详情*/
-				zpname: "",
-				votenum: "",
-				authornum: ""
+			return {						
+				details:{}
 			}
 		},
-		//数组或对象，用于接收来自父组件的数据
-		props: [], //数组
-		props: {}, //对象
-		//计算属性
-		computed: {},
-		//局部注册组件
-		components: {
-			'mt-swipe': Swipe,
-			'mt-swipe-item': SwipeItem,
+		created() {
+			debugger;
+			var _this = this;
+			var id = this.$route.params.id;
+				axios.post('http://localhost:80/votediv/selectById',
+					qs.stringify({
+						id:id
+					})
+				).then(function(response) {
+					debugger;
+					
+					/*_this.details = response.data.map(function(artpro) {
+						artpro.productionPic = "http://localhost:80/imgupload/" + artpro.productionPic;
+						return artpro;
+					})*/
+					
+					_this.details=response.data;
+					_this.details.productionPic="http://localhost:80/imgupload/"+response.data.productionPic
+					
+				}).catch(function(error) {
+
+				})
 		},
-		//事件处理器
-		methods: {},
-		//一个对象，键是需要观察的表达式，值是对应回调函数
-		watch: {},
-		//生命钩子函数:实例创建完成之后被调用
-		created() {},
-		//生命钩子函数:el被新创建的vm.$el替换，挂载到实例上
-		mounted: {},
-		//自定义局部指令
-		directives: {},
-		//过滤器
-		filters: {}
+		methods:{
+			/*投票按钮点击事件*/
+			handleClick(id) {
+				axios.post('http://localhost:80/voteCount/insert',
+					qs.stringify({
+						itemId: id
+					})
+				).then(function(response) {
+					if(response) {
+						alert("投票成功");
+						history.go(0);						
+					}
+				}).catch(function(error) {
+					console.log(error);
+				})
+			}/*,
+			voteResClick(id){
+				this.$router.push({name:'voteRes',params:{userId:id}});
+			}*/
+		}
 	}
 </script>
 
 <style scoped>
+	.mint-header.is-fixed{
+		height:0.8rem;
+	}	
 	/*轮播图设置*/
 	
 	img {

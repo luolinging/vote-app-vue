@@ -8,13 +8,13 @@
 			</mt-header>
 		</div>
 		<div class="mint-content">
-			<mt-field label="邮箱" placeholder="请输入邮箱" type="email" v-model="email"></mt-field>
-
+			<mt-field label="邮箱:" placeholder="请输入邮箱" type="email" v-model="email"></mt-field>
 			<mt-field label="密码:" placeholder="请输入密码" type="password" v-model="pwd"></mt-field>
-
-			<mt-field label="密码:" placeholder="请再次输入密码" type="password" v-model="respwd"></mt-field>
-
-			<mt-button class="btn" type="primary" @click.native="d">获取注册码</mt-button>
+			<mt-field label="手机号:" placeholder="请输入手机号" type="text" v-model="phone"></mt-field>
+			<mt-field label="昵称:" placeholder="请输入昵称" type="text" v-model="nickName"></mt-field>
+			<mt-field label="名字" placeholder="请输入真实姓名" type="text" v-model="realName"></mt-field>
+			<mt-field label="性别" placeholder="请输入性别" type="text" v-model="sex"></mt-field>
+			<mt-button class="btn" type="primary" @click.native="getCode">获取注册码</mt-button>
 			<mt-field class="mui-code" placeholder="请输入验证" type="text" v-model="verificationCode"></mt-field>
 
 			<div class="mui-content-padded">
@@ -37,7 +37,10 @@
 			return {
 				email: '',
 				pwd: '',
-				respwd: '',
+				phone:'',
+				nickName: '',
+				realName:'',
+				sex:'',
 				verificationCode: ''
 			}
 		},
@@ -52,30 +55,40 @@
 		methods: {
 			/*注册事件*/
 			register() {
-				debugger;
-				axios.post('http://localhost:80/user/insert',
+				/*debugger;*/
+				var _this = this;
+				axios.post('htt://localhost:80/user/insert',
 					qs.stringify({
 						userCode: this.email,
-						password: this.pwd
+						password: this.pwd,
+						phone:this.phone,
+						userNickname:this.nickName,
+						userRealname:this.realName,
+						sex:this.sex,
+						verificationCode:this.verificationCode
 					})
 				).then(function(response) {
-					debugger;
+					/*debugger;*/
 					if(response.data.success) {
-						
+						alert(response.data.successMessage+"请登录");
+						/*注册成功后跳到登录*/
+						_this.$router.push("/login");
+					}else{
+						alert(response.data.errorMessage);
 					}
 				}).catch(function(error) {
-
+					console.log(error);
 				})
 			},
 			/*获取验证玛*/
 			getCode(){
-				debugger;
+				/*debugger;*/
 				axios.post('http://localhost:80/user/sendVerificationCode',
 					qs.stringify({
 						userCode: this.email
 					})
 				).then(function(response) {
-					debugger;
+					/*debugger;*/
 					if(response.data.success) {
 						
 					}
@@ -100,8 +113,11 @@
 <style scoped>
 	@import url("http://localhost:8081/static/css/mui.min.css");
 	@import url("http://localhost:8081/static/css/style.css");
+	.mint-header.is-fixed{
+		height:0.8rem;
+	}
 	.mint-content {
-		margin-top: 2.5rem;
+		margin-top: 3.5rem;
 	}
 	/*登录样式设置   mui组件源代码*/
 	.area {

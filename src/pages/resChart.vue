@@ -15,7 +15,7 @@
 </template>
 
 <script>
-	let echarts = require('echarts/lib/echarts')
+	let echarts = require('echarts')
 	// 引入柱状图组件
 	require('echarts/lib/chart/pie')
 	// 引入提示框和title组件
@@ -125,6 +125,9 @@
 </script>
 
 <style scoped>
+	.mint-header.is-fixed{
+		height:0.8rem;
+	}	
 	.header {
 		margin-bottom: 1rem;
 	}

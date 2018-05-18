@@ -13,11 +13,13 @@
     "axios": "^0.18.0",
     "chart.js": "^2.7.2",
     "echarts": "^4.1.0",
+    "element-ui": "^2.3.8",
     "lib-flexible": "^0.3.2",
     "mint-ui": "^2.2.13",
     "moment": "^2.22.1",
     "mui": "0.0.1",
     "vue": "^2.5.2",
+    "vue-file-upload": "^0.1.12",
     "vue-resource": "^1.5.0",
     "vue-router": "^3.0.1"
   },

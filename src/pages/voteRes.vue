@@ -30,132 +30,33 @@
 		//设置数据对象
 		data() {
 			return {
-				items: [{
-					num: 1,
-					authornum: "叶子",
-					zpname: "001",
-					votenum: "16"
-				}, {
-					num: 2,
-					authornum: "池边迎春",
-					zpname: "006",
-					votenum: "30"
-				}, {
-					num: 3,
-					authornum: "山杏报春三",
-					zpname: "006",
-					votenum: "30"
-				}, {
-					num: 4,
-					authornum: "山杏报春三",
-					zpname: "006",
-					votenum: "30"
-				}, {
-					num: 5,
-					authornum: "山杏报春三",
-					zpname: "006",
-					votenum: "30"
-				}, {
-					num: 6,
-					authornum: "山杏报春三",
-					zpname: "006",
-					votenum: "30"
-				}, {
-					num: 7,
-					authornum: "山杏报春三",
-					zpname: "006",
-					votenum: "30"
-				}, {
-					num: 8,
-					authornum: "山杏报春三",
-					zpname: "006",
-					votenum: "30"
-				}, {
-					num: 9,
-					authornum: "山杏报春三",
-					zpname: "006",
-					votenum: "30"
-				}, {
-					num: 10,
-					authornum: "山杏报春三",
-					zpname: "006",
-					votenum: "30"
-				}, {
-					num: 11,
-					authornum: "山杏报春三",
-					zpname: "006",
-					votenum: "30"
-				}, {
-					num: 12,
-					authornum: "山杏报春三",
-					zpname: "006",
-					votenum: "30"
-				}, {
-					num: 13,
-					authornum: "山杏报春三",
-					zpname: "006",
-					votenum: "30"
-				}, {
-					num: 14,
-					authornum: "山杏报春三",
-					zpname: "006",
-					votenum: "30"
-				}, {
-					num: 15,
-					authornum: "山杏报春三",
-					zpname: "006",
-					votenum: "30"
-				}, {
-					num: 16,
-					authornum: "山杏报春三",
-					zpname: "006",
-					votenum: "30"
-				}, {
-					num: 17,
-					authornum: "山杏报春三",
-					zpname: "006",
-					votenum: "30"
-				}, {
-					num: 18,
-					authornum: "山杏报春三",
-					zpname: "006",
-					votenum: "30"
-				}, {
-					num: 19,
-					authornum: "山杏报春三",
-					zpname: "006",
-					votenum: "30"
-				}, {
-					num: 20,
-					authornum: "山杏报春三",
-					zpname: "006",
-					votenum: "30"
-				}]
+				items: []
 			}
 		},
-		//数组或对象，用于接收来自父组件的数据
-		props: [], //数组
-		props: {}, //对象
-		//计算属性
-		computed: {},
-		//局部注册组件
-		components: {},
-		//事件处理器
-		methods: {},
-		//一个对象，键是需要观察的表达式，值是对应回调函数
-		watch: {},
-		//生命钩子函数:实例创建完成之后被调用
-		created() {},
-		//生命钩子函数:el被新创建的vm.$el替换，挂载到实例上
-		mounted: {},
-		//自定义局部指令
-		directives: {},
-		//过滤器
-		filters: {}
+		created(){
+			debugger;
+			var _this = this;
+			var id = this.$route.params.id;			
+			
+				axios.post('http://localhost:80/voteCount/getUserByVoteId',
+					qs.stringify({
+						voteId: id
+					})
+				).then(function(response) {
+					
+				}).catch(function(error) {
+					console.log(error);
+				})
+			
+		},
+		
 	}
 </script>
 
 <style scoped>
+	.mint-header.is-fixed{
+		height:0.8rem;
+	}	
 	.header {
 		margin-bottom: 1rem;
 	}

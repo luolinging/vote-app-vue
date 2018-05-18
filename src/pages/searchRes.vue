@@ -21,7 +21,8 @@ export default {
   //设置数据对象
   data () {
     return {
-      
+    	value:"",
+      result:""
     }
   }, 
   //数组或对象，用于接收来自父组件的数据
@@ -47,6 +48,9 @@ export default {
 </script>
 
 <style scoped>
+	.mint-header.is-fixed{
+		height:0.8rem;
+	}	
 .back {
 		margin-bottom: 0.8rem;
 }
