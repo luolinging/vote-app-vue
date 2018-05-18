@@ -21,10 +21,10 @@
 					</mt-swipe>
 				</div>
 				<!--参赛人数-->
-				<div class="game_num">
+				<div class="game_num" v-for="art in allArt" v-model="allArt">
 					<mt-navbar>
-						<mt-tab-item id="1">参赛人数：{{cs_person}}</mt-tab-item>
-						<mt-tab-item id="2">累积投票：{{lj_vote}}</mt-tab-item>
+						<mt-tab-item id="1">参赛人数：{{art.id}}</mt-tab-item>
+						<mt-tab-item id="2">累积投票：{{art.voteCount}}</mt-tab-item>
 					</mt-navbar>
 				</div>
 				<!--活动规则-->
@@ -128,6 +128,30 @@
 			/*,
 						"myModule": my*/
 		},
+		created() {
+			var _this = this;
+			debugger;
+			axios.post('http://localhost:80/votediv/selectAll')
+			.then(res => {
+				_this.allArt = res.data.map(function(artpro) {
+					artpro.productionPic = "http://localhost:80/imgupload/" + artpro.productionPic;				
+					return artpro;
+				})
+				/*this.originalValue = res.data;
+				for(let i = 0; i <= this.originalValue.length; i++) {
+				  var tempArr={};
+	              tempArr.id=this.originalValue[i].id;
+	              tempArr.productionPic="http://localhost:80"+this.originalValue[i].productionPic;
+	              tempArr.voteItemName=this.originalValue[i].voteItemName;
+	              tempArr.voteItemDecrib=this.originalValue[i].voteItemDecrib;
+	              tempArr.voteCount=this.originalValue[i].voteCount;
+	              
+	              _this.allArt.push(tempArr);
+	            }*/
+			}).catch(function(error) {
+				console.log(error);
+			})
+		},
 		methods: {
 			/*投票时间设置*/
 			openPicker(type) {
@@ -145,12 +169,15 @@
 			},
 			/*投票按钮点击事件*/
 			handleClick(id) {
+				debugger;
+				var _this = this;
 				axios.post('http://localhost:80/voteCount/insert',
 					qs.stringify({
 						itemId: id
 					})
 				).then(function(response) {
-					if(response) {
+					debugger;
+					if(response.status==200) {
 						alert("投票成功");
 						history.go(0);
 						/*axios.post('http://localhost:80/voteCount/insert')
@@ -162,6 +189,10 @@
 									}*/
 						/*this.allArt = res.data
 									})*/
+					}else{
+						alert("登录后才可以投票，请先登录！");
+						_this.$router.push("/login")
+
 					}
 				}).catch(function(error) {
 					console.log(error);
@@ -172,28 +203,9 @@
 							this.myShowSetting = !this.myShowSetting
 						}*/
 		},
-		created() {
-			var _this = this;
-			axios.post('http://localhost:80/votediv/selectAll').then(res => {
-				_this.allArt = res.data.map(function(artpro) {
-					artpro.productionPic = "http://localhost:80/imgupload/" + artpro.productionPic;
-					return artpro;
-				})
-				/*this.originalValue = res.data;
-				for(let i = 0; i <= this.originalValue.length; i++) {
-				  var tempArr={};
-	              tempArr.id=this.originalValue[i].id;
-	              tempArr.productionPic="http://localhost:80"+this.originalValue[i].productionPic;
-	              tempArr.voteItemName=this.originalValue[i].voteItemName;
-	              tempArr.voteItemDecrib=this.originalValue[i].voteItemDecrib;
-	              tempArr.voteCount=this.originalValue[i].voteCount;
-	              
-	              _this.allArt.push(tempArr);
-	            }*/
-			}).catch(function(error) {
-				console.log(error);
-			})
-		}
+		computed: {
+	   
+	  },		
 	}
 </script>
 
