@@ -34,14 +34,12 @@
 				<mt-button size="large" type="primary" @click.native="handleClick">提交</mt-button>
 			</div>-->
 
-			<form>
 				<input type="text" value="" v-model="userId" placeholder="请输入编号" />
 				<input type="text" value="" v-model="voteItemName" placeholder="请输入作品名" />
 				<span>作品简介：</span>
 				<input type="textarea" value="" v-model="voteItemDecrib" /></br>
 				<input type="file" @change="getFile($event)" /></br>
 				<button @click="submitForm">提交</button>
-			</form>
 		</div>
 	</div>
 </template>
@@ -62,9 +60,7 @@
 			}
 		},
 		methods: {
-
 			getFile(e) {
-				debugger;
 				let file = e.target.files[0];
 				let param = new FormData(); //创建form对象
 				param.append('file', file, file.name); //通过append向form对象添加数据
@@ -77,7 +73,6 @@
 				};
 				axios.post('http://localhost:80/uploadimg', param, config)
 					.then(response => {
-						debugger
 						console.log(response.data);
 						this.uri = response.data;
 					})
@@ -93,10 +88,15 @@
 						productionPic: _this.uri
 					}))
 					.then(function(res) {
-						debugger
+						debugger;
+						if(res.data.success) {
+							alert("报名成功！");
+							_this.$router.push("/home");
+						}else{
+							alert(res.data.errorMessage);
+						}
 
 					})
-
 			}
 
 		}

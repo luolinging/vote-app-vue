@@ -15,7 +15,7 @@
 				<div class="link-area">
 					<router-link to="/register">注册</router-link>
 					<span class="spliter">|</span>
-					<a id='forgetPassword'>忘记密码</a>
+					<router-link to="/wjpwd">忘记密码</router-link>
 				</div>
 			</div>
 		</div>

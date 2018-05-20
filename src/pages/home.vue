@@ -21,10 +21,10 @@
 					</mt-swipe>
 				</div>
 				<!--参赛人数-->
-				<div class="game_num" v-for="art in allArt" v-model="allArt">
+				<div class="game_num">
 					<mt-navbar>
-						<mt-tab-item id="1">参赛人数：{{art.id}}</mt-tab-item>
-						<mt-tab-item id="2">累积投票：{{art.voteCount}}</mt-tab-item>
+						<mt-tab-item id="1">参赛人数：{{length}}</mt-tab-item>
+						<mt-tab-item id="2">累积投票：{{voteTotalCount}}</mt-tab-item>
 					</mt-navbar>
 				</div>
 				<!--活动规则-->
@@ -119,38 +119,31 @@
 				selected: "home",
 				/*选手作品相关*/
 				allArt: [],
+				length:0,
+				voteTotalCount:0,
 				myShowSetting: ""
 			}
 		},
 		components: {
 			'mt-swipe': Swipe,
 			'mt-swipe-item': SwipeItem
-			/*,
-						"myModule": my*/
 		},
 		created() {
 			var _this = this;
-			debugger;
 			axios.post('http://localhost:80/votediv/selectAll')
 			.then(res => {
 				_this.allArt = res.data.map(function(artpro) {
 					artpro.productionPic = "http://localhost:80/imgupload/" + artpro.productionPic;				
 					return artpro;
 				})
-				/*this.originalValue = res.data;
-				for(let i = 0; i <= this.originalValue.length; i++) {
-				  var tempArr={};
-	              tempArr.id=this.originalValue[i].id;
-	              tempArr.productionPic="http://localhost:80"+this.originalValue[i].productionPic;
-	              tempArr.voteItemName=this.originalValue[i].voteItemName;
-	              tempArr.voteItemDecrib=this.originalValue[i].voteItemDecrib;
-	              tempArr.voteCount=this.originalValue[i].voteCount;
-	              
-	              _this.allArt.push(tempArr);
-	            }*/
+				this.length=_this.allArt.length;
+				for(var i=0;i<_this.allArt.length;i++){
+					this.voteTotalCount += parseInt(_this.allArt[i].voteCount);
+				}
 			}).catch(function(error) {
 				console.log(error);
 			})
+			
 		},
 		methods: {
 			/*投票时间设置*/
@@ -171,24 +164,14 @@
 			handleClick(id) {
 				debugger;
 				var _this = this;
-				axios.post('http://localhost:80/voteCount/insert',
+				axios.post('http://localhost:80/voteCount/vote',
 					qs.stringify({
 						itemId: id
 					})
 				).then(function(response) {
-					debugger;
 					if(response.status==200) {
 						alert("投票成功");
 						history.go(0);
-						/*axios.post('http://localhost:80/voteCount/insert')
-							.then(function(response) {
-									/*this.allArt = res.data.map(function(artpro) {
-											artpro.voteCount = artpro.voteCount;
-											return artpro;
-
-									}*/
-						/*this.allArt = res.data
-									})*/
 					}else{
 						alert("登录后才可以投票，请先登录！");
 						_this.$router.push("/login")
@@ -198,10 +181,6 @@
 					console.log(error);
 				})
 			}
-			/*,
-						myShow() {
-							this.myShowSetting = !this.myShowSetting
-						}*/
 		},
 		computed: {
 	   

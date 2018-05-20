@@ -2,7 +2,7 @@
 	<div class="player-detail">
 		<div class="header">
 			<mt-header fixed title="作品详情">
-				<router-link to="/" slot="left">
+				<router-link to="/home" slot="left">
 					<mt-button icon="back"></mt-button>
 				</router-link>
 				<router-link :to="'/voteRes/'+details.id" slot="right">
@@ -12,7 +12,7 @@
 		</div>
 		<!--图片轮播-->
 		<div class="slide_show">
-			<img src="../../dist/static/img/gupanpan/1.jpg"/>
+			<img v-lazy="details.productionPic"/>
 		</div>
 		<!--选手详情-->
 		<div class="palyer">
@@ -73,7 +73,7 @@
 		methods:{
 			/*投票按钮点击事件*/
 			handleClick(id) {
-				axios.post('http://localhost:80/voteCount/insert',
+				axios.post('http://localhost:80/voteCount/vote',
 					qs.stringify({
 						itemId: id
 					})

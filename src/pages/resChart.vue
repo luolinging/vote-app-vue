@@ -46,12 +46,6 @@
 						trigger: 'item',
 						formatter: "{a}<br/>{b}:{c}({d}%)"
 					},
-					/*左上角类似导航栏显示每一个选项*/
-					/*legend: {
-						orient: 'vertical',
-						left: 'left',
-						data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎']
-					},*/
 					series: [{
 						name: '票数',
 						type: 'pie',

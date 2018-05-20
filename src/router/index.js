@@ -14,6 +14,7 @@ import voteRes from '@/pages/voteRes'
 import modifyPwd from '@/pages/modifyPwd'
 import searchRes from '@/pages/searchRes'
 import userDetail from '@/pages/userDetail'
+import wjpwd from '@/pages/wjpwd'
 
 Vue.use(Router)
 
@@ -89,6 +90,11 @@ export default new Router({
 			path:'/userDetail',
 			name: 'userDetail',
 			component: userDetail
+		},
+		{
+			path:'/wjpwd',
+			name: 'wjpwd',
+			component: wjpwd
 		}
 	]
 })
