@@ -1,8 +1,5 @@
 <template>
 	<div>
-		<!--<div id="main">
-			<myModule v-show="myShowSetting"></myModule>
-		</div>-->
 		<div id="panel">
 			<div class="home">
 				<!--顶部导航栏-->
@@ -21,21 +18,30 @@
 					</mt-swipe>
 				</div>
 				<!--参赛人数-->
-				<div class="game_num">
-					<mt-navbar>
-						<mt-tab-item id="1">参赛人数：{{length}}</mt-tab-item>
-						<mt-tab-item id="2">累积投票：{{voteTotalCount}}</mt-tab-item>
+				<div class="game_num" >
+					<mt-navbar style="font-size: 30px;">
+						<mt-tab-item id="1" >
+							<div style="font-size: 20px;">
+								参赛人数：{{length}}
+							</div>
+							
+						</mt-tab-item>
+						<mt-tab-item id="2">
+							<div style="font-size: 20px;">
+								累积投票：{{voteTotalCount}}
+							</div>
+						</mt-tab-item>
 					</mt-navbar>
 				</div>
 				<!--活动规则-->
 				<div class="activity">
 					<div class="role">活动规则：每个账号只能投票一次</div>
 					<div class="start_time">
-						<span>开始时间：</span>
+						<span class="start_span">开始时间：</span>
 						<input id='start' type="text" class='form-control input-sm' name='start' @click='openPicker("start")' v-model='startTime'>
 					</div>
 					<div class="end_time">
-						<span>结束时间：</span>
+						<span class="end_span">结束时间：</span>
 						<input id='end' type="text" class='form-control input-sm' name='end' @click='openPicker("end")' v-model='endTime'>
 					</div>
 					<mt-datetime-picker type="date" ref="picker" year-format="{value} 年" month-format="{value} 月" date-format="{value} 日" @confirm="handleConfirm">
@@ -58,15 +64,7 @@
 				</div>
 				<!--底部选项卡-->
 				<div class="footer">
-					<mt-tab-container v-model="selected">
-						<mt-tab-container-item id="home">
-						</mt-tab-container-item>
-						<mt-tab-container-item id="search">
-						</mt-tab-container-item>
-						<mt-tab-container-item id="my">
-						</mt-tab-container-item>
-					</mt-tab-container>
-					<mt-tabbar v-model="selected" fixed>
+					<mt-tabbar v-model="selected">
 						<mt-tab-item id="home">
 							<router-link to="/">首页</router-link>
 						</mt-tab-item>
@@ -74,9 +72,7 @@
 							<router-link to="/search">搜索</router-link>
 						</mt-tab-item>
 						<mt-tab-item id="my">
-							<div id="mydiv">
-								<router-link to="/my">我的</router-link>
-							</div>
+							<router-link to="/my">我的</router-link>
 						</mt-tab-item>
 					</mt-tabbar>
 				</div>
@@ -162,29 +158,32 @@
 			},
 			/*投票按钮点击事件*/
 			handleClick(id) {
-				debugger;
+				/*debugger;*/
 				var _this = this;
 				axios.post('http://localhost:80/voteCount/vote',
 					qs.stringify({
 						itemId: id
 					})
 				).then(function(response) {
-					if(response.status==200) {
+					/*debugger;*/
+					if(response.data.success) {
 						alert("投票成功");
+						//TODO  这里可以再使用一个ajax请求，来局部刷新网页    目前先用
 						history.go(0);
-					}else{
-						alert("登录后才可以投票，请先登录！");
-						_this.$router.push("/login")
+					}else if(response.data.success==false){
+						/*debugger;*/
+						
+						alert(response.data.errorMessage);
+						if(response.data.errorMessage=="请先登录"){
+							_this.$router.push("/login")
+						}
 
 					}
 				}).catch(function(error) {
 					console.log(error);
 				})
 			}
-		},
-		computed: {
-	   
-	  },		
+		}	
 	}
 </script>
 
@@ -192,7 +191,7 @@
 	.header {
 		margin-bottom: 0.54rem;
 	}
-	
+
 	.mint-header.is-fixed {
 		position: absolute;
 		height: 0.8rem;
@@ -202,15 +201,23 @@
 	img {
 		width: 100%;
 	}
-	
-	.mint-swipe {
-		height: 200px;
+
+	#start{
+		margin-top: 10px;
 	}
-	
+	#end{
+		margin-top: 10px;
+	}
+
+	.mint-swipe {
+		height: 556px;
+	}
+	.role{
+		margin-bottom: 15px;
+	}
 	.desc {
 		font-weight: 600;
-		opacity: .9;
-		padding: 5px;
+		opacity: 0.9;
 		height: 20px;
 		line-height: 20px;
 		width: 100%;
@@ -218,6 +225,9 @@
 		background-color: gray;
 		position: absolute;
 		bottom: 0;
+		padding-bottom: 36px;
+    	padding-top: 14px;
+    	padding-left: 5px;
 	}
 	
 	.game_num {
@@ -252,22 +262,24 @@
 	
 	.lazy .lazyimg {
 		width: 100%
-	}
-	
-	.mint-tabbar {
-		background-color: #26a2ff;
-	}
+	}	
 	
 	.lazyimg[lazy=loading] {
 		width: 40px;
 		height: 200px;
 		margin: auto;
 	}
-	
+	.lazy{
+		margin-bottom: 60px;
+	}
 	.lazylist .content {
-		padding-top: 5px;
-		padding-bottom: 15px;
+		margin-top: 20px;
+    	margin-bottom: 20px;
 		text-align: center;
+		height:30px; 
+		line-height:30px; 
+		width:100%; 
+		overflow:hidden;
 	}
 	
 	.mint-button--normal,
@@ -277,9 +289,26 @@
 	}
 	
 	.footer {
-		position: absolute;
-		/*相对于父元素contanier定位*/
+		height: 100px;
+		width: 100%;
+		position: fixed;
 		bottom: 0;
-		/*始终距离它的父元素的底部为0px.则是处于父元素的最底*/
 	}
+	.mint-tabbar{
+		height: 50px;
+		background-color: #e5e5d9;;
+	}
+	.mint-tab-item-label{
+		height: 30px;
+	    line-height: 35px;
+	}
+	a{
+		font-size: 16px;
+		color: #000000;
+	}
+	.mint-tab-item.is-selected{
+		background-color: #26a2ff;
+	}
+	
+	
 </style>

@@ -12,10 +12,10 @@
 			<mt-field label="密码:" placeholder="请输入密码" type="password" v-model="pwd"></mt-field>
 			<mt-field label="手机号:" placeholder="请输入手机号" type="text" v-model="phone"></mt-field>
 			<mt-field label="昵称:" placeholder="请输入昵称" type="text" v-model="nickName"></mt-field>
-			<mt-field label="名字" placeholder="请输入真实姓名" type="text" v-model="realName"></mt-field>
-			<mt-field label="性别" placeholder="请输入性别" type="text" v-model="sex"></mt-field>
+			<mt-field label="名字:" placeholder="请输入真实姓名" type="text" v-model="realName"></mt-field>
+			<mt-field label="性别:" placeholder="请输入性别" type="text" v-model="sex"></mt-field>
 			<mt-button class="btn" type="primary" @click.native="getCode">获取注册码</mt-button>
-			<mt-field class="mui-code" placeholder="请输入验证" type="text" v-model="verificationCode"></mt-field>
+			<mt-field label="验证码:" class="mui-code" placeholder="请输入验证码" type="text" v-model="verificationCode"></mt-field>
 
 			<div class="mui-content-padded">
 				<button class="mui-btn-primary" @click="register">注册</button>
@@ -44,20 +44,14 @@
 				verificationCode: ''
 			}
 		},
-		//数组或对象，用于接收来自父组件的数据
-		props: [], //数组
-		props: {}, //对象
-		//计算属性
-		computed: {},
-		//局部注册组件
-		components: {},
 		//事件处理器
-		methods: {
+		methods: {					
 			/*注册事件*/
-			register() {
-				/*debugger;*/
+			register() {				
+				debugger;
 				var _this = this;
-				axios.post('htt://localhost:80/user/insert',
+				//添加请求头
+				axios.post('http://localhost:80/user/insert',
 					qs.stringify({
 						userCode: this.email,
 						password: this.pwd,
@@ -68,7 +62,7 @@
 						verificationCode:this.verificationCode
 					})
 				).then(function(response) {
-					/*debugger;*/
+					debugger;
 					if(response.data.success) {
 						alert(response.data.successMessage+"请登录");
 						/*注册成功后跳到登录*/
@@ -96,82 +90,38 @@
 
 				})
 			}
-		},
-		//一个对象，键是需要观察的表达式，值是对应回调函数
-		watch: {},
-		//生命钩子函数:实例创建完成之后被调用
-		created() {},
-		//生命钩子函数:el被新创建的vm.$el替换，挂载到实例上
-		mounted: {},
-		//自定义局部指令
-		directives: {},
-		//过滤器
-		filters: {}
+		}
 	}
 </script>
 
 <style scoped>
-	@import url("http://localhost:8081/static/css/mui.min.css");
 	@import url("http://localhost:8081/static/css/style.css");
 	.mint-header.is-fixed{
 		height:0.8rem;
 	}
 	.mint-content {
-		margin-top: 3.5rem;
+		margin-top: 2.5rem;
 	}
-	/*登录样式设置   mui组件源代码*/
 	.area {
 		margin: 20px auto 0px auto;
 	}
 	
-	.mui-input-group {
-		margin-top: 10px;
-	}
-	
-	.mui-input-group:first-child {
-		margin-top: 20px;
-	}
-	
-	.mui-input-group label {
-		width: 22%;
-	}
 	.btn{
 		float: right;
-    height: 49px;
+    	height: 40px;
+    	margin-right: 7.2px;
+    	border-radius: 5px;
 	}
 	.mui-btn-primary{
 		width:101%;
+	}	
+	.mint-button--large{
+		height: 0.8rem;
 	}
-	.mui-code{
-		padding-left: 49px;
-	}
-	
-	.mui-input-row label~input,
-	.mui-input-row label~select,
-	.mui-input-row label~textarea {
-		width: 78%;
-	}
-	
-	.mui-checkbox input[type=checkbox],
-	.mui-radio input[type=radio] {
-		top: 6px;
-	}
-	
-	.mui-content-padded {
-		margin-top: 25px;
-		margin-left: auto;
-		margin-right: auto;
-		width: 28%;
-	}
-	
 	.mint-cell-wrapper {
 		background-color: red;
 	}
-	
-	.mui-btn {
-		padding: 10px;
-	}
-	
+
 	.link-area {
 		display: block;
 		margin-top: 25px;
@@ -211,5 +161,11 @@
 	
 	.oauth-area .oauth-btn.disabled {
 		background-color: #ddd;
+	}
+	.mint-cell{
+		background-color: #efeff4;
+	}
+	.register{
+		margin: 30px;
 	}
 </style>

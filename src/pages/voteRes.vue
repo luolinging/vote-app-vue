@@ -3,7 +3,7 @@
 		<div class="vote-record">
 			<div class="header">
 				<mt-header fixed title="投票结果">
-					<router-link to="/playerDetail" slot="left">
+					<router-link to="'/playerDetail/'+item.id" slot="left">
 						<mt-button icon="back"></mt-button>
 					</router-link>
 					<router-link to="/resChart" slot="right">
@@ -36,8 +36,10 @@
 </template>
 
 <script>
+	import qs from "qs";
+	import axios from 'axios';
 	export default {
-		name: 'HelloWorld',
+		name: 'voteRes',
 		//设置数据对象
 		data() {
 			return {
@@ -53,7 +55,8 @@
 					voteId: id
 				})
 			).then(function(response) {
-				_this.items = response.data.map.value
+				debugger;
+				_this.items = response.data
 			}).catch(function(error) {
 				console.log(error);
 			})

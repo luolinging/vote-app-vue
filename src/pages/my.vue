@@ -2,7 +2,7 @@
 	<div class="my">
 		<div class="header">
 			<mt-header fixed title="">
-				<router-link to="/home" slot="left">
+				<router-link to="/" slot="left">
 					<mt-button icon="back"></mt-button>
 				</router-link>
 			</mt-header>

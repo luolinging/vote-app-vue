@@ -22,7 +22,7 @@ export default new Router({
 	linkActiveClass: 'mui-active',
 	mode: 'history',
 	routes: [{
-			path: '/home',
+			path: '/',
 			name:'home',
 			component: home
 		},
@@ -32,7 +32,7 @@ export default new Router({
 			component: login
 		},
 		{
-			path: '/',
+			path: '/register',
 			name:'register',
 			component: register
 		},
@@ -77,7 +77,7 @@ export default new Router({
 			component: settings
 		},
 		{
-			path: '/voteRes/:voteId',
+			path: '/voteRes/:id',
 			name: 'voteRes',
 			component: voteRes
 		},

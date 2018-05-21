@@ -2,7 +2,7 @@
 	<div class="player-detail">
 		<div class="header">
 			<mt-header fixed title="作品详情">
-				<router-link to="/home" slot="left">
+				<router-link to="/" slot="left">
 					<mt-button icon="back"></mt-button>
 				</router-link>
 				<router-link :to="'/voteRes/'+details.id" slot="right">
@@ -27,7 +27,7 @@
 		</div>
 		<div>
 			<mt-cell title="作品简介："></mt-cell>
-			<div>
+			<div style="height:300px;padding: 20px;border: 1px solid;margin: 15px;">				
 				{{details.voteItemDecrib}}
 			</div>
 		</div>
@@ -48,7 +48,7 @@
 			}
 		},
 		created() {
-			debugger;
+			/*debugger;*/
 			var _this = this;
 			var id = this.$route.params.id;
 				axios.post('http://localhost:80/votediv/selectById',
@@ -56,7 +56,7 @@
 						id:id
 					})
 				).then(function(response) {
-					debugger;
+					/*debugger;*/
 					
 					/*_this.details = response.data.map(function(artpro) {
 						artpro.productionPic = "http://localhost:80/imgupload/" + artpro.productionPic;
@@ -78,17 +78,19 @@
 						itemId: id
 					})
 				).then(function(response) {
-					if(response) {
+					/*debugger;*/
+					if(response.data.success) {
 						alert("投票成功");
-						history.go(0);						
+						//TODO  这里可以再使用一个ajax请求，来局部刷新网页    目前先用
+						history.go(0);
+					}else if(response.data.success==false){
+						/*debugger;*/						
+						alert(response.data.errorMessage);
 					}
 				}).catch(function(error) {
 					console.log(error);
 				})
-			}/*,
-			voteResClick(id){
-				this.$router.push({name:'voteRes',params:{userId:id}});
-			}*/
+			}
 		}
 	}
 </script>

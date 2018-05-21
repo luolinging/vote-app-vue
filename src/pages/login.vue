@@ -36,30 +36,29 @@
 		},
 		//事件处理器
 		methods: {
-			login(){
+			login() {
 				/*debugger;*/
 				var _this = this;
 				axios.post('http://localhost:80/user/login',
-					qs.stringify({
-						userCode: this.username,
-						password: this.pwd,
+						qs.stringify({
+							userCode: this.username,
+							password: this.pwd,
+						})
+					).then(function(response) {
+						/*debugger;*/
+						if(response.data.success) {
+							/*console.log(response.data.successMessage);*/
+							/*登录成功后，直接跳转到home界面*/
+							/*debugger;*/
+							alert(response.data.successMessage)
+							_this.$router.push("/");
+						} else {
+							alert("登录失败");
+						}
 					})
-				).then(function(response){
-					/*debugger;*/
-					if(response.data.success){
-						console.log(response.data.successMessage);
-						/*登录成功后，直接跳转到home界面*/
-						/*debugger;*/						
-						alert(response.data.successMessage)
-						_this.$router.push("/home");
-					}else{
-						alert("登录失败");
-					}
-				})
-				.catch(function(error){
-					console.log(error);
-				});
-				
+					.catch(function(error) {
+						console.log(error);
+					});
 
 			}
 		}
@@ -67,58 +66,31 @@
 </script>
 
 <style scoped>
-	@import url("http://localhost:8081/static/css/mui.min.css");
+	/*@import url("http://localhost:8081/static/css/mui.min.css");*/
+	
 	@import url("http://localhost:8081/static/css/style.css");
-	.mint-header.is-fixed{
-		height:0.8rem;
-	}	
+	.mint-header.is-fixed {
+		height: 0.8rem;
+	}
+	
 	.mint-content {
 		margin-top: 2.5rem;
 	}
-	/*登录样式设置   mui组件源代码*/
+	
+	.login {
+		margin: 30px;
+	}
 	
 	.area {
 		margin: 20px auto 0px auto;
 	}
 	
-	.mui-input-group {
-		margin-top: 10px;
-	}
-	
-	.mui-input-group:first-child {
-		margin-top: 20px;
-	}
-	
-	.mui-input-group label {
-		width: 22%;
-	}
-	
-	.mui-input-row label~input,
-	.mui-input-row label~select,
-	.mui-input-row label~textarea {
-		width: 78%;
-	}
-	
-	.mui-checkbox input[type=checkbox],
-	.mui-radio input[type=radio] {
-		top: 6px;
-	}
-	
-	.mui-content-padded {
-		margin-top: 25px;
-		margin-left: auto;
-	    margin-right: auto;
-	    width: 28%;
-	}
-	.mint-cell-wrapper{
+	.mint-cell-wrapper {
 		margin-top: 0.2rem;
 	}
 	
-	.mui-btn {
-		padding: 10px;
-	}
-	.mui-btn-primary{
-		width:101%;
+	.mui-btn-primary {
+		width: 101%;
 	}
 	
 	.link-area {
@@ -161,5 +133,9 @@
 	
 	.oauth-area .oauth-btn.disabled {
 		background-color: #ddd;
+	}
+	
+	.mint-cell {
+		background-color: #efeff4;
 	}
 </style>
