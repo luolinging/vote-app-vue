@@ -8,15 +8,13 @@
 			</mt-header>
 		</div>
 		<!--循环输出结果-->
-		<div v-for="item in items">
+		<div >
 				<ul>
-					<ol >
-					<!--<mt-tab-item id="0" class="tab0">{{item.id}}.</mt-tab-item>-->
-					<span>{{item.id}}</span>&nbsp;&nbsp;
-					<span>作家名：{{item.username}}</span>
-					<span>作品名：{{item.voteItemName}}</span>
-					<span>票数：{{item.voteCount}}</span>
-					</ol>
+					<li v-for="item in items" class="resList">
+					<div class="id">编号：{{item.id}}</div>
+					<div class="voteItemName">作品名：{{item.voteItemName}}</div>
+					<div class="voteCount">票数：{{item.voteCount}}</div>
+					</li>
 				</ul>
 		</div>
 
@@ -31,44 +29,7 @@ import axios from 'axios';
 		//设置数据对象
 		data() {
 			return {
-				items: [/*{
-					num: 1,
-					authorname: "顾盼盼",
-					zpname: "池边迎春"
-				}, {
-					num: 2,
-					authorname: "洪涛",
-					zpname: "寂静的绿"
-				}, {
-					num: 3,
-					authorname: "康好贤",
-					zpname: "感知非现实"
-				}, {
-					num: 4,
-					authorname: "牛龙凯",
-					zpname: "树林中的礼貌"
-				}, {
-					num: 5,
-					authorname: "孙晓东",
-					zpname: "斑斓夜色"
-				}, {
-					num: 6,
-					authorname: "孙莹",
-					zpname: "某一天II"
-				}, {
-					num: 7,
-					authorname: "文雅",
-					zpname: "江南忆"
-				}, {
-					num: 8,
-					authorname: "臧鹏",
-					zpname: "红墨水"
-				}, {
-					num: 9,
-					authorname: "张子叶",
-					zpname: "无状态.51"
-				}*/]
-
+				items: []
 			}
 		},
 		created() {
@@ -97,28 +58,28 @@ import axios from 'axios';
 		height:0.8rem;
 	}	
 	.header {
-		margin-bottom: 1rem;
+		margin-bottom: 1.5rem;
 	}
 	
 	.mint-navbar {
 		margin: 0.3rem 0.3rem;
 	}
 	
-	/*.tab0 {
-		display: inline-block;
-		text-align: left;
-		margin-right: -75px;
+	.resList{
+		margin-bottom: 30px;
+    	padding-bottom: 30px;
+    	margin-right: 50px;
+    	background-color: #fff;
+    	padding-top: 20px;
+    	padding-left: 15px;
 	}
-	
-	.tab1 {
-		text-align: left;
-		margin-left: -60px;
-		margin-right: -30px;
+	.id{
+		margin-right: 1rem;
 	}
-	
-	.tab2 {
-		text-align: left;
-		margin-left: 20px;
-		margin-right: -15px;
-	}*/
+	.voteItemName{
+		margin-right: 1rem;
+	}
+	.voteCount{
+		margin-right: 1rem;
+	}
 </style>

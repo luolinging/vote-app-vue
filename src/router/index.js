@@ -15,6 +15,7 @@ import modifyPwd from '@/pages/modifyPwd'
 import searchRes from '@/pages/searchRes'
 import userDetail from '@/pages/userDetail'
 import wjpwd from '@/pages/wjpwd'
+import aboutApp from '@/pages/aboutApp'
 
 Vue.use(Router)
 
@@ -67,7 +68,7 @@ export default new Router({
 			component: playerDetail
 		},
 		{
-			path: '/resChart',
+			path: '/resChart/:id',
 			name: 'resChart',
 			component: resChart
 		},
@@ -95,6 +96,11 @@ export default new Router({
 			path:'/wjpwd',
 			name: 'wjpwd',
 			component: wjpwd
+		},
+		{
+			path:'/aboutApp',
+			name: 'aboutApp',
+			component: aboutApp
 		}
 	]
 })

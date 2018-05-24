@@ -17,7 +17,9 @@
 				</router-link>
 			</div>
 			<div class="bottomselected">
+				<router-link to="/aboutApp">
 				<mt-cell title="关于APP" is-link></mt-cell>
+				</router-link >
 			</div>
 		</div>
 	</div>

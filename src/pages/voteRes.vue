@@ -3,33 +3,26 @@
 		<div class="vote-record">
 			<div class="header">
 				<mt-header fixed title="投票结果">
-					<router-link to="'/playerDetail/'+item.id" slot="left">
+					<!--这里传的参数应该是作品id,不应该是投票id,存在bug-->					
+					<!--"'/playerDetail/'+voteIdObject.voteId"-->					
+					<router-link :to="voteId" slot="left">
 						<mt-button icon="back"></mt-button>
 					</router-link>
-					<router-link to="/resChart" slot="right">
+					<router-link :to="chartId" slot="right">
 						<mt-button class="btn">图像分析</mt-button>
 					</router-link>
 				</mt-header>
 			</div>
 		</div>
 		<!--循环输出结果-->
-		<!--<div>
-			<mt-navbar v-for="item in items" :key="item.id">
-				<mt-tab-item id="0" class="tab0">{{item.num}}.</mt-tab-item>
-				<mt-tab-item id="1" class="tab1">编号：{{item.authornum}}</mt-tab-item>
-				<mt-tab-item id="2" class="tab2">作品名：{{item.zpname}}</mt-tab-item>
-				<mt-tab-item id="3" class="tab3">总票数：{{item.votenum}}</mt-tab-item>
-			</mt-navbar>
-		</div>-->
-		<!--循环输出结果-->
-		<div v-for="item in items">
+		<div >
 			<ul>
-				<ol >
-				<span>{{item.id}}</span>&nbsp;&nbsp;
-				<span>作家名：{{item.username}}</span>
-				<span>作品名：{{item.voteItemName}}</span>
-				<span>票数：{{item.voteCount}}</span>
-				</ol>
+				<li v-for="item in items" class="resList">
+				<div class="item_id">用&nbsp;&nbsp;户&nbsp;&nbsp;id：  {{item.id}}</div>
+				<div class="item_phone">用户电话：{{item.phone}}</div>
+				<div class="item_userCode">用户邮箱：{{item.userCode}}</div>
+				<div class="item_userRealname">用户名字：{{item.userRealname}}</div>
+				</li>
 			</ul>
 		</div>
 	</div>
@@ -43,20 +36,26 @@
 		//设置数据对象
 		data() {
 			return {
-				items: []
+				items: [],
+				/*voteIdObject:{},*/
+				voteId:"",
+				chartId:""
 			}
 		},
 		created(){
 			debugger;
 			var _this = this;
 			var id = this.$route.params.id;
+			this.voteId = "/playerDetail/"+this.$route.params.id;
+			this.chartId = "/resChart/"+this.$route.params.id;
 			axios.post('http://localhost:80/voteCount/getUserByVoteId',
 				qs.stringify({
 					voteId: id
 				})
 			).then(function(response) {
 				debugger;
-				_this.items = response.data
+				/*_this.voteIdObject = response.data.map;*/
+				_this.items = response.data.map.userList				
 			}).catch(function(error) {
 				console.log(error);
 			})
@@ -71,7 +70,7 @@
 		height:0.8rem;
 	}	
 	.header {
-		margin-bottom: 1rem;
+		margin-bottom: 1.5rem;
 	}
 	
 	.mint-navbar {
@@ -97,5 +96,15 @@
 	.tab3 {
 		text-align: left;
 		margin-right: -55px;
+	}
+
+	.resList{
+		margin-bottom: 30px;
+    	padding-bottom: 30px;
+    	margin-right: 50px;
+    	background-color: #fff;
+    	padding-top: 20px;
+    	line-height: 45px;
+    	padding-left: 25px;
 	}
 </style>

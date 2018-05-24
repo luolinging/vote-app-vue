@@ -22,19 +22,8 @@
 	import qs from "qs"
 	import axios from 'axios';
 	import { Indicator, MessageBox } from 'mint-ui';
-	//  M设定可以上传图片的大小
-	const M = 10;
-	const UNIT = 1024;
-	const MAX_SIZE = M * UNIT * UNIT;
 	export default {
 		name: 'applyJion',
-		//设置数据对象
-		/**
-		 * @member {Object}
-		 * @name props
-		 * @property {Boolean} multiple 是否可以同时上传多个文件
-		 * @property {Number} max 最多一次可以上传多少张
-		 */
 		props: {
 			multiple: Boolean,
 			max: Number
@@ -49,14 +38,13 @@
 			var _this = this;
 			axios.post('http://localhost:80/user/selectByPrimaryKey')
 			.then(function(response) {
-				debugger;		
+				debugger;	
 				if(response.data.success){
 					_this.allDetail = response.data.map.value
 				}else{
-					alert(response.data.errorMessage);
+					alert("请先登录！");
 					_this.$router.push("/login");
-				}
-							
+				}							
 			}).catch(function(error) {
 				console.log(error)
 			})

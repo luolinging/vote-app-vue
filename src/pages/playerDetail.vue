@@ -18,7 +18,7 @@
 		<div class="palyer">
 			<mt-navbar>
 				<mt-tab-item id="1">作品名：{{details.voteItemName}}</mt-tab-item>
-				<mt-tab-item id="2">编号：{{details.userId}}</mt-tab-item>
+				<mt-tab-item id="2">作者编号：{{details.userId}}</mt-tab-item>
 				<mt-tab-item id="3">票数：{{details.voteCount}}</mt-tab-item>
 			</mt-navbar>
 		</div>
@@ -27,7 +27,7 @@
 		</div>
 		<div>
 			<mt-cell title="作品简介："></mt-cell>
-			<div style="height:300px;padding: 20px;border: 1px solid;margin: 15px;">				
+			<div style="height:100px;padding: 13px;border: 1px solid;margin: 7px;">				
 				{{details.voteItemDecrib}}
 			</div>
 		</div>
@@ -48,7 +48,7 @@
 			}
 		},
 		created() {
-			/*debugger;*/
+			debugger;
 			var _this = this;
 			var id = this.$route.params.id;
 				axios.post('http://localhost:80/votediv/selectById',
@@ -56,7 +56,7 @@
 						id:id
 					})
 				).then(function(response) {
-					/*debugger;*/
+					debugger;
 					
 					/*_this.details = response.data.map(function(artpro) {
 						artpro.productionPic = "http://localhost:80/imgupload/" + artpro.productionPic;

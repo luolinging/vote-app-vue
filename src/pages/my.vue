@@ -1,7 +1,7 @@
 <template>
 	<div class="my">
 		<div class="header">
-			<mt-header fixed title="">
+			<mt-header fixed title="我的">
 				<router-link to="/" slot="left">
 					<mt-button icon="back"></mt-button>
 				</router-link>
@@ -106,5 +106,8 @@
 		width: 2rem;
 		height: 0.75rem;
 		margin: 0.4rem;
+	}
+	.my{
+		margin-left:11%;
 	}
 </style>

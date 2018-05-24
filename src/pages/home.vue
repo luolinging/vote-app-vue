@@ -125,9 +125,11 @@
 			'mt-swipe-item': SwipeItem
 		},
 		created() {
+			debugger;
 			var _this = this;
 			axios.post('http://localhost:80/votediv/selectAll')
 			.then(res => {
+				debugger;
 				_this.allArt = res.data.map(function(artpro) {
 					artpro.productionPic = "http://localhost:80/imgupload/" + artpro.productionPic;				
 					return artpro;
@@ -210,7 +212,7 @@
 	}
 
 	.mint-swipe {
-		height: 556px;
+		height: 364px;
 	}
 	.role{
 		margin-bottom: 15px;
@@ -276,8 +278,8 @@
 		margin-top: 20px;
     	margin-bottom: 20px;
 		text-align: center;
-		height:30px; 
-		line-height:30px; 
+		height:39px; 
+		line-height:39px; 
 		width:100%; 
 		overflow:hidden;
 	}
@@ -295,7 +297,7 @@
 		bottom: 0;
 	}
 	.mint-tabbar{
-		height: 50px;
+		height: 30px;
 		background-color: #e5e5d9;;
 	}
 	.mint-tab-item-label{

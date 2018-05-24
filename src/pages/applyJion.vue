@@ -34,12 +34,12 @@
 				<mt-button size="large" type="primary" @click.native="handleClick">提交</mt-button>
 			</div>-->
 
-				<input type="text" value="" v-model="userId" placeholder="请输入编号" />
+				<!--<input type="text" value="" v-model="userId" placeholder="请输入编号" />-->
 				<input type="text" value="" v-model="voteItemName" placeholder="请输入作品名" />
 				<span>作品简介：</span>
-				<input type="textarea" value="" v-model="voteItemDecrib" /></br>
+				<textarea rows="5" value="" v-model="voteItemDecrib" /></br>
 				<input type="file" @change="getFile($event)" /></br>
-				<button @click="submitForm">提交</button>
+				<button class="mui-btn-primary" @click="submitForm">提交</button>
 		</div>
 	</div>
 </template>
@@ -91,9 +91,10 @@
 						debugger;
 						if(res.data.success) {
 							alert("报名成功！");
-							_this.$router.push("/home");
+							_this.$router.push("/");
 						}else{
 							alert(res.data.errorMessage);
+							_this.$router.push("/login");
 						}
 
 					})
@@ -128,6 +129,7 @@
 	textarea {
 		margin-top: 0.5rem;
 		margin-left: 0.1rem;
+		margin-right: 0.1rem;
 	}
 	
 	.btntj {
@@ -137,5 +139,9 @@
 	.authorjj {
 		margin-top: 0.2rem;
 		border: solid 1px #acacb4;
+	}
+	.mui-btn-primary{
+		margin-top: 10px;
+		width: 100%;
 	}
 </style>
